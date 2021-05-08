@@ -56,7 +56,7 @@ var beepbox = (function (exports) {
     Config.blackKeyNameParents = [-1, 1, -1, 1, -1, 1, -1, -1, 1, -1, 1, -1];
     Config.tempoMin = -100;
     Config.tempoMax = 10000;
-    Config.reverbRange = 4;
+    Config.reverbRange = 50;
     Config.beatsPerBarMin = 3;
     Config.beatsPerBarMax = 16;
     Config.barCountMin = 1;
@@ -588,7 +588,7 @@ var beepbox = (function (exports) {
                 { name: "warm pad", midiProgram: 89, generalMidi: true, settings: { "type": "FM", "effects": "chorus & reverb", "transition": "soft fade", "chord": "harmony", "filterCutoffHz": 2828, "filterResonance": 29, "filterEnvelope": "swell 3", "vibrato": "none", "algorithm": "1←(2 3 4)", "feedbackType": "1⟲", "feedbackAmplitude": 7, "feedbackEnvelope": "steady", "operators": [{ "frequency": "1×", "amplitude": 14, "envelope": "custom" }, { "frequency": "1×", "amplitude": 6, "envelope": "swell 1" }, { "frequency": "1×", "amplitude": 0, "envelope": "steady" }, { "frequency": "1×", "amplitude": 0, "envelope": "steady" }] } },
                 { name: "polysynth pad", midiProgram: 90, generalMidi: true, settings: { "type": "chip", "transition": "hard fade", "effects": "chorus & reverb", "chord": "harmony", "filterCutoffHz": 2828, "filterResonance": 43, "filterEnvelope": "twang 3", "wave": "sawtooth", "interval": "hum", "vibrato": "delayed" } },
                 { name: "space voice pad", midiProgram: 91, generalMidi: true, settings: { "type": "FM", "effects": "chorus & reverb", "transition": "medium fade", "chord": "harmony", "filterCutoffHz": 4000, "filterResonance": 71, "filterEnvelope": "steady", "vibrato": "none", "algorithm": "(1 2 3)←4", "feedbackType": "1⟲ 2⟲ 3⟲ 4⟲", "feedbackAmplitude": 5, "feedbackEnvelope": "swell 2", "operators": [{ "frequency": "1×", "amplitude": 10, "envelope": "custom" }, { "frequency": "2×", "amplitude": 8, "envelope": "custom" }, { "frequency": "3×", "amplitude": 7, "envelope": "custom" }, { "frequency": "11×", "amplitude": 1, "envelope": "punch" }] } },
-                { name: "bowed glass pad", midiProgram: 92, generalMidi: true, settings: { "type": "FM", "effects": "reverb", "transition": "soft fade", "chord": "harmony", "filterCutoffHz": 4000, "filterResonance": 14, "filterEnvelope": "twang 3", "vibrato": "none", "algorithm": "1←3 2←4", "feedbackType": "1⟲ 2⟲", "feedbackAmplitude": 0, "feedbackEnvelope": "steady", "operators": [{ "frequency": "1×", "amplitude": 10, "envelope": "custom" }, { "frequency": "2×", "amplitude": 12, "envelope": "custom" }, { "frequency": "3×", "amplitude": 7, "envelope": "twang 3" }, { "frequency": "7×", "amplitude": 4, "envelope": "flare 3" }] } },
+                { name: "among us", midiProgram: 92, generalMidi: true, settings: { "type": "FM", "effects": "reverb", "transition": "soft fade", "chord": "harmony", "filterCutoffHz": 4000, "filterResonance": 14, "filterEnvelope": "twang 3", "vibrato": "none", "algorithm": "1←3 2←4", "feedbackType": "1⟲ 2⟲", "feedbackAmplitude": 0, "feedbackEnvelope": "steady", "operators": [{ "frequency": "1×", "amplitude": 10, "envelope": "custom" }, { "frequency": "2×", "amplitude": 12, "envelope": "custom" }, { "frequency": "3×", "amplitude": 7, "envelope": "twang 3" }, { "frequency": "7×", "amplitude": 4, "envelope": "flare 3" }] } },
                 { name: "metallic pad", midiProgram: 93, generalMidi: true, settings: { "type": "FM", "effects": "reverb", "transition": "medium fade", "chord": "harmony", "filterCutoffHz": 5657, "filterResonance": 14, "filterEnvelope": "twang 3", "vibrato": "none", "algorithm": "1←3 2←4", "feedbackType": "1⟲ 2⟲", "feedbackAmplitude": 13, "feedbackEnvelope": "twang 3", "operators": [{ "frequency": "1×", "amplitude": 15, "envelope": "custom" }, { "frequency": "~1×", "amplitude": 9, "envelope": "custom" }, { "frequency": "1×", "amplitude": 7, "envelope": "swell 2" }, { "frequency": "11×", "amplitude": 7, "envelope": "steady" }] } },
                 { name: "sweep pad", midiProgram: 95, generalMidi: true, settings: { "type": "chip", "effects": "chorus & reverb", "transition": "soft fade", "chord": "harmony", "filterCutoffHz": 4000, "filterResonance": 86, "filterEnvelope": "flare 3", "wave": "sawtooth", "interval": "hum", "vibrato": "none" } },
                 { name: "atmosphere", midiProgram: 99, generalMidi: true, settings: { "type": "FM", "effects": "chorus & reverb", "transition": "hard fade", "chord": "strum", "filterCutoffHz": 4000, "filterResonance": 29, "filterEnvelope": "steady", "vibrato": "none", "algorithm": "1←(2 3 4)", "feedbackType": "3⟲ 4⟲", "feedbackAmplitude": 3, "feedbackEnvelope": "steady", "operators": [{ "frequency": "1×", "amplitude": 14, "envelope": "custom" }, { "frequency": "1×", "amplitude": 10, "envelope": "swell 3" }, { "frequency": "3×", "amplitude": 7, "envelope": "twang 2" }, { "frequency": "1×", "amplitude": 7, "envelope": "twang 3" }] } },
@@ -623,7 +623,7 @@ var beepbox = (function (exports) {
                 { name: "helicopter", midiProgram: 125, generalMidi: true, isNoise: true, midiSubharmonicOctaves: -0.5, settings: { "type": "spectrum", "effects": "reverb", "transition": "seamless", "chord": "arpeggio", "filterCutoffHz": 1414, "filterResonance": 14, "filterEnvelope": "tremolo4", "spectrum": [14, 43, 43, 57, 57, 57, 71, 71, 71, 71, 86, 86, 86, 86, 86, 86, 86, 86, 86, 86, 86, 71, 71, 71, 71, 71, 71, 71, 57, 57] } },
                 { name: "applause", midiProgram: 126, generalMidi: true, isNoise: true, midiSubharmonicOctaves: -3, settings: { "type": "spectrum", "effects": "reverb", "transition": "soft fade", "chord": "harmony", "filterCutoffHz": 2000, "filterResonance": 14, "filterEnvelope": "swell 3", "spectrum": [14, 14, 29, 29, 29, 43, 43, 57, 71, 71, 86, 86, 86, 71, 71, 57, 57, 57, 71, 86, 86, 86, 86, 86, 71, 71, 57, 57, 57, 57] } },
                 { name: "gunshot", midiProgram: 127, generalMidi: true, isNoise: true, midiSubharmonicOctaves: -2, settings: { "type": "spectrum", "effects": "reverb", "transition": "hard fade", "chord": "strum", "filterCutoffHz": 1414, "filterResonance": 29, "filterEnvelope": "twang 1", "spectrum": [14, 29, 43, 43, 57, 57, 57, 71, 71, 71, 86, 86, 86, 86, 86, 86, 86, 86, 86, 86, 86, 71, 71, 71, 71, 57, 57, 57, 57, 43] } },
-                { name: "scoot", midiProgram: 92, settings: { "type": "chip", "transition": "hard", "effects": "reverb", "chord": "harmony", "filterCutoffHz": 707, "filterResonance": 86, "filterEnvelope": "flare 1", "wave": "sawtooth", "interval": "shimmer", "vibrato": "none" } },
+                { name: "poo", midiProgram: 92, settings: { "type": "chip", "transition": "hard", "effects": "reverb", "chord": "harmony", "filterCutoffHz": 707, "filterResonance": 86, "filterEnvelope": "flare 1", "wave": "sawtooth", "interval": "shimmer", "vibrato": "none" } },
                 { name: "buzz saw", midiProgram: 30, settings: { "type": "FM", "effects": "reverb", "transition": "soft", "chord": "custom interval", "filterCutoffHz": 2000, "filterResonance": 0, "filterEnvelope": "steady", "vibrato": "none", "algorithm": "1←2←3←4", "feedbackType": "1⟲", "feedbackAmplitude": 0, "feedbackEnvelope": "steady", "operators": [{ "frequency": "5×", "amplitude": 13, "envelope": "custom" }, { "frequency": "1×", "amplitude": 10, "envelope": "steady" }, { "frequency": "~1×", "amplitude": 6, "envelope": "steady" }, { "frequency": "11×", "amplitude": 12, "envelope": "steady" }] } },
                 { name: "mosquito", midiProgram: 93, settings: { "type": "PWM", "effects": "reverb", "transition": "cross fade", "chord": "harmony", "filterCutoffHz": 2828, "filterResonance": 57, "filterEnvelope": "steady", "pulseWidth": 4.40625, "pulseEnvelope": "tremolo6", "vibrato": "shaky" } },
                 { name: "breathing", midiProgram: 126, isNoise: true, midiSubharmonicOctaves: -1, settings: { "type": "spectrum", "effects": "reverb", "transition": "hard fade", "chord": "harmony", "filterCutoffHz": 2000, "filterResonance": 14, "filterEnvelope": "swell 2", "spectrum": [14, 14, 14, 29, 29, 29, 29, 29, 43, 29, 29, 43, 43, 43, 29, 29, 71, 43, 86, 86, 57, 100, 86, 86, 86, 86, 71, 86, 71, 57] } },
@@ -2089,6 +2089,11 @@ var beepbox = (function (exports) {
                         message = div(h2("Song Tempo"), p("This setting controls the speed of your song, measured in beats-per-minute."));
                     }
                     break;
+				case "slider":
+                    {
+                        message = div(h2("nintari slider"), p("nintari slider"));
+                    }
+                    break;
                 case "reverb":
                     {
                         message = div(h2("Reverb"), p("Reverb is a kind of echo effect. You can use this slider to control the amount of reverb for instruments that enable it. A little bit helps instruments sound more natural. Adding a lot of reverb can add sense of depth or mystery."));
@@ -3296,6 +3301,7 @@ var beepbox = (function (exports) {
             this.loopLength = 4;
             this.tempo = 150;
             this.reverb = 0;
+			this.nintari = 0;
             this.beatsPerBar = 8;
             this.barCount = 16;
             this.patternsPerChannel = 8;
@@ -8441,6 +8447,15 @@ var beepbox = (function (exports) {
                 this._didSomething();
         }
     }
+	class TheSliderChange extends Change {
+		constructor(doc, oldValue, newValue) {
+            super();
+            doc.notifier.changed();
+			doc.song.nintari = newValue;
+            if (oldValue != newValue)
+                this._didSomething();
+        }
+    }
     class ChangeNoteAdded extends UndoableChange {
         constructor(doc, pattern, note, index, deletion = false) {
             super(deletion);
@@ -13509,6 +13524,7 @@ var beepbox = (function (exports) {
                     song.key = key;
                     song.scale = 11;
                     song.reverb = 1;
+					song.nintari = 1;
                     song.rhythm = 1;
                     removeDuplicatePatterns(pitchChannels);
                     removeDuplicatePatterns(noiseChannels);
@@ -13782,7 +13798,9 @@ var beepbox = (function (exports) {
             this._keySelect = buildOptions(select$5(), Config.keys.map(key => key.name).reverse());
             this._tempoSlider = new Slider(input$6({ style: "margin: 0; width: 4em; flex-grow: 1; vertical-align: middle;", type: "range", min: "0", max: "14", value: "7", step: "1" }), this._doc, (oldValue, newValue) => new ChangeTempo(this._doc, oldValue, Math.round(120.0 * Math.pow(2.0, (-4.0 + newValue) / 9.0))));
             this._tempoStepper = input$6({ style: "width: 3em; margin-left: 0.4em; vertical-align: middle;", type: "number", step: "1" });
-            this._reverbSlider = new Slider(input$6({ style: "margin: 0;", type: "range", min: "0", max: Config.reverbRange - 1, value: "0", step: "1" }), this._doc, (oldValue, newValue) => new ChangeReverb(this._doc, oldValue, newValue));
+			this._reverbStepper = input$6({ style: "width: 3em; margin-left: 0.4em; vertical-align: middle;", type: "number", step: "1" });
+            this._reverbSlider = new Slider(input$6({ style: "margin: 0; width: 4em; flex-grow: 1; vertical-align: middle;", type: "range", min: "0", max: Config.reverbRange - 1, value: "0", step: "1" }), this._doc, (oldValue, newValue) => new ChangeReverb(this._doc, oldValue, newValue));
+			this._theSlider = new Slider(input$6({ style: "margin: 0; width: 4em; flex-grow: 1; vertical-align: middle;", type: "range", min: "0", max: "13", value: "0", step: "1" }), this._doc, (oldValue, newValue) => new TheSliderChange(this._doc, oldValue, newValue));
             this._rhythmSelect = buildOptions(select$5(), Config.rhythms.map(rhythm => rhythm.name));
             this._pitchedPresetSelect = buildPresetOptions(false);
             this._drumPresetSelect = buildPresetOptions(true);
@@ -13838,7 +13856,7 @@ var beepbox = (function (exports) {
             this._trackAndMuteContainer = div$8({ class: "trackAndMuteContainer" }, this._muteEditor.container, this._trackContainer);
             this._barScrollBar = new BarScrollBar(this._doc, this._trackContainer);
             this._trackArea = div$8({ class: "track-area" }, this._trackAndMuteContainer, this._barScrollBar.container);
-            this._settingsArea = div$8({ class: "settings-area noSelection" }, div$8({ class: "version-area" }, div$8({ style: `text-align: center; margin: 3px 0; color: ${ColorConfig.secondaryText};` }, EditorConfig.versionDisplayName)), div$8({ class: "play-pause-area" }, div$8({ class: "playback-bar-controls" }, this._playButton, this._prevBarButton, this._nextBarButton), div$8({ class: "playback-volume-controls" }, span$3({ class: "volume-speaker" }), this._volumeSlider)), div$8({ class: "menu-area" }, div$8({ class: "selectContainer menu file" }, this._fileMenu), div$8({ class: "selectContainer menu edit" }, this._editMenu), div$8({ class: "selectContainer menu preferences" }, this._optionsMenu)), div$8({ class: "song-settings-area" }, div$8({ class: "editor-controls" }, div$8({ style: `margin: 3px 0; text-align: center; color: ${ColorConfig.secondaryText};` }, "Song Settings"), div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("scale") }, "Scale: "), div$8({ class: "selectContainer" }, this._scaleSelect)), div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("key") }, "Key: "), div$8({ class: "selectContainer" }, this._keySelect)), div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("tempo") }, "Tempo: "), span$3({ style: "display: flex;" }, this._tempoSlider.input, this._tempoStepper)), div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("reverb") }, "Reverb: "), this._reverbSlider.input), div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("rhythm") }, "Rhythm: "), div$8({ class: "selectContainer" }, this._rhythmSelect)))), div$8({ class: "instrument-settings-area" }, this._instrumentSettingsGroup));
+            this._settingsArea = div$8({ class: "settings-area noSelection" }, div$8({ class: "version-area" }, div$8({ style: `text-align: center; margin: 3px 0; color: ${ColorConfig.secondaryText};` }, EditorConfig.versionDisplayName)), div$8({ class: "play-pause-area" }, div$8({ class: "playback-bar-controls" }, this._playButton, this._prevBarButton, this._nextBarButton), div$8({ class: "playback-volume-controls" }, span$3({ class: "volume-speaker" }), this._volumeSlider)), div$8({ class: "menu-area" }, div$8({ class: "selectContainer menu file" }, this._fileMenu), div$8({ class: "selectContainer menu edit" }, this._editMenu), div$8({ class: "selectContainer menu preferences" }, this._optionsMenu)), div$8({ class: "song-settings-area" }, div$8({ class: "editor-controls" }, div$8({ style: `margin: 3px 0; text-align: center; color: ${ColorConfig.secondaryText};` }, "Song Settings"), div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("scale") }, "Scale: "), div$8({ class: "selectContainer" }, this._scaleSelect)), div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("key") }, "Key: "), div$8({ class: "selectContainer" }, this._keySelect)), div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("tempo") }, "Tempo: "), span$3({ style: "display: flex;" }, this._tempoSlider.input, this._tempoStepper)), div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("reverb") }, "Reverb: "), div$8({ class: "selectRow" }, this._reverbSlider.input, this._reverbStepper)), div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("slider") }, "nintari: "), div$8({ class: "selectRow" }, this._theSlider.input)), span$3({ style: "display: flex;" }), div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("rhythm") }, "Rhythm: "), div$8({ class: "selectContainer" }, this._rhythmSelect)))), div$8({ class: "instrument-settings-area" }, this._instrumentSettingsGroup));
             this.mainLayer = div$8({ class: "beepboxEditor", tabIndex: "0" }, this._patternArea, this._trackArea, this._settingsArea, this._promptContainer);
             this._wasPlaying = false;
             this._currentPromptName = null;
@@ -13917,6 +13935,8 @@ var beepbox = (function (exports) {
                 this._tempoSlider.updateValue(Math.max(0, Math.min(28, Math.round(4.0 + 9.0 * Math.log(this._doc.song.tempo / 120.0) / Math.LN2))));
                 this._tempoStepper.value = this._doc.song.tempo.toString();
                 this._reverbSlider.updateValue(this._doc.song.reverb);
+				this._reverbStepper.value = this._doc.song.reverb;
+				this._theSlider.updateValue(this._doc.song.nintari);
                 setSelectedValue(this._rhythmSelect, this._doc.song.rhythm);
                 if (this._doc.song.getChannelIsNoise(this._doc.channel)) {
                     this._pitchedPresetSelect.style.display = "none";
@@ -15707,3 +15727,1893 @@ var beepbox = (function (exports) {
 
 }({}));
 //# sourceMappingURL=beepbox_editor.js.map
+ss: "selectContainer", style: "width: 100%;" }, this._formatSelect), div$5({ style: "text-align: left;" }, "(Be patient, exporting may take some time...)"), div$5({ style: "display: flex; flex-direction: row-reverse; justify-content: space-between;" }, this._exportButton), this._cancelButton);
+            this._close = () => {
+                this._doc.undo();
+            };
+            this.cleanUp = () => {
+                this._fileName.removeEventListener("input", ExportPrompt._validateFileName);
+                this._loopDropDown.removeEventListener("blur", ExportPrompt._validateNumber);
+                this._exportButton.removeEventListener("click", this._export);
+                this._cancelButton.removeEventListener("click", this._close);
+                this.container.removeEventListener("keydown", this._whenKeyPressed);
+            };
+            this._whenKeyPressed = (event) => {
+                if (event.target.tagName != "BUTTON" && event.keyCode == 13) {
+                    this._export();
+                }
+            };
+            this._export = () => {
+                window.localStorage.setItem("exportFormat", this._formatSelect.value);
+                switch (this._formatSelect.value) {
+                    case "wav":
+                        this._exportToWav();
+                        break;
+                    case "mp3":
+                        this._exportToMp3();
+                        break;
+                    case "midi":
+                        this._exportToMidi();
+                        break;
+                    case "json":
+                        this._exportToJson();
+                        break;
+                    default:
+                        throw new Error("Unhandled file export type.");
+                }
+            };
+            this._loopDropDown.value = "1";
+            if (this._doc.song.loopStart == 0) {
+                this._enableIntro.checked = false;
+                this._enableIntro.disabled = true;
+            }
+            else {
+                this._enableIntro.checked = true;
+                this._enableIntro.disabled = false;
+            }
+            if (this._doc.song.loopStart + this._doc.song.loopLength == this._doc.song.barCount) {
+                this._enableOutro.checked = false;
+                this._enableOutro.disabled = true;
+            }
+            else {
+                this._enableOutro.checked = true;
+                this._enableOutro.disabled = false;
+            }
+            const lastExportFormat = window.localStorage.getItem("exportFormat");
+            if (lastExportFormat != null) {
+                this._formatSelect.value = lastExportFormat;
+            }
+            this._fileName.select();
+            setTimeout(() => this._fileName.focus());
+            this._fileName.addEventListener("input", ExportPrompt._validateFileName);
+            this._loopDropDown.addEventListener("blur", ExportPrompt._validateNumber);
+            this._exportButton.addEventListener("click", this._export);
+            this._cancelButton.addEventListener("click", this._close);
+            this.container.addEventListener("keydown", this._whenKeyPressed);
+        }
+        static _validateFileName(event) {
+            const input = event.target;
+            const deleteChars = /[\+\*\$\?\|\{\}\\\/<>#%!`&'"=:@]/gi;
+            if (deleteChars.test(input.value)) {
+                let cursorPos = input.selectionStart;
+                input.value = input.value.replace(deleteChars, "");
+                cursorPos--;
+                input.setSelectionRange(cursorPos, cursorPos);
+            }
+        }
+        static _validateNumber(event) {
+            const input = event.target;
+            input.value = Math.floor(Math.max(Number(input.min), Math.min(Number(input.max), Number(input.value)))) + "";
+        }
+        _synthesize(sampleRate) {
+            const synth = new Synth(this._doc.song);
+            synth.samplesPerSecond = sampleRate;
+            synth.loopRepeatCount = Number(this._loopDropDown.value) - 1;
+            if (!this._enableIntro.checked) {
+                for (let introIter = 0; introIter < this._doc.song.loopStart; introIter++) {
+                    synth.nextBar();
+                }
+            }
+            const sampleFrames = Math.ceil(synth.getSamplesPerBar() * synth.getTotalBars(this._enableIntro.checked, this._enableOutro.checked));
+            const recordedSamplesL = new Float32Array(sampleFrames);
+            const recordedSamplesR = new Float32Array(sampleFrames);
+            synth.synthesize(recordedSamplesL, recordedSamplesR, sampleFrames);
+            return { recordedSamplesL, recordedSamplesR };
+        }
+        _exportToWav() {
+            const sampleRate = 48000;
+            const { recordedSamplesL, recordedSamplesR } = this._synthesize(sampleRate);
+            const sampleFrames = recordedSamplesL.length;
+            const wavChannelCount = 2;
+            const bytesPerSample = 2;
+            const bitsPerSample = 8 * bytesPerSample;
+            const sampleCount = wavChannelCount * sampleFrames;
+            const totalFileSize = 44 + sampleCount * bytesPerSample;
+            let index = 0;
+            const arrayBuffer = new ArrayBuffer(totalFileSize);
+            const data = new DataView(arrayBuffer);
+            data.setUint32(index, 0x52494646, false);
+            index += 4;
+            data.setUint32(index, 36 + sampleCount * bytesPerSample, true);
+            index += 4;
+            data.setUint32(index, 0x57415645, false);
+            index += 4;
+            data.setUint32(index, 0x666D7420, false);
+            index += 4;
+            data.setUint32(index, 0x00000010, true);
+            index += 4;
+            data.setUint16(index, 0x0001, true);
+            index += 2;
+            data.setUint16(index, wavChannelCount, true);
+            index += 2;
+            data.setUint32(index, sampleRate, true);
+            index += 4;
+            data.setUint32(index, sampleRate * bytesPerSample * wavChannelCount, true);
+            index += 4;
+            data.setUint16(index, bytesPerSample * wavChannelCount, true);
+            index += 2;
+            data.setUint16(index, bitsPerSample, true);
+            index += 2;
+            data.setUint32(index, 0x64617461, false);
+            index += 4;
+            data.setUint32(index, sampleCount * bytesPerSample, true);
+            index += 4;
+            {
+                const range = (1 << (bitsPerSample - 1)) - 1;
+                for (let i = 0; i < sampleFrames; i++) {
+                    let valL = Math.floor(Math.max(-1, Math.min(1, recordedSamplesL[i])) * range);
+                    let valR = Math.floor(Math.max(-1, Math.min(1, recordedSamplesR[i])) * range);
+                    {
+                        data.setInt16(index, valL, true);
+                        index += 2;
+                        data.setInt16(index, valR, true);
+                        index += 2;
+                    }
+                }
+            }
+            const blob = new Blob([arrayBuffer], { type: "audio/wav" });
+            save(blob, this._fileName.value.trim() + ".wav");
+            this._close();
+        }
+        _exportToMp3() {
+            const whenEncoderIsAvailable = () => {
+                const sampleRate = 44100;
+                const { recordedSamplesL, recordedSamplesR } = this._synthesize(sampleRate);
+                const lamejs = window["lamejs"];
+                const channelCount = 2;
+                const kbps = 192;
+                const sampleBlockSize = 1152;
+                const mp3encoder = new lamejs.Mp3Encoder(channelCount, sampleRate, kbps);
+                const mp3Data = [];
+                const left = new Int16Array(recordedSamplesL.length);
+                const right = new Int16Array(recordedSamplesR.length);
+                const range = (1 << 15) - 1;
+                for (let i = 0; i < recordedSamplesL.length; i++) {
+                    left[i] = Math.floor(Math.max(-1, Math.min(1, recordedSamplesL[i])) * range);
+                    right[i] = Math.floor(Math.max(-1, Math.min(1, recordedSamplesR[i])) * range);
+                }
+                for (let i = 0; i < left.length; i += sampleBlockSize) {
+                    const leftChunk = left.subarray(i, i + sampleBlockSize);
+                    const rightChunk = right.subarray(i, i + sampleBlockSize);
+                    const mp3buf = mp3encoder.encodeBuffer(leftChunk, rightChunk);
+                    if (mp3buf.length > 0)
+                        mp3Data.push(mp3buf);
+                }
+                const mp3buf = mp3encoder.flush();
+                if (mp3buf.length > 0)
+                    mp3Data.push(mp3buf);
+                const blob = new Blob(mp3Data, { type: "audio/mp3" });
+                save(blob, this._fileName.value.trim() + ".mp3");
+                this._close();
+            };
+            if ("lamejs" in window) {
+                whenEncoderIsAvailable();
+            }
+            else {
+                var script = document.createElement("script");
+                script.src = "https://cdn.jsdelivr.net/npm/lamejs@1.2.0/lame.min.js";
+                script.onload = whenEncoderIsAvailable;
+                document.head.appendChild(script);
+            }
+        }
+        _exportToMidi() {
+            const song = this._doc.song;
+            const midiTicksPerBeepBoxTick = 2;
+            const midiTicksPerBeat = midiTicksPerBeepBoxTick * Config.ticksPerPart * Config.partsPerBeat;
+            const midiTicksPerPart = midiTicksPerBeepBoxTick * Config.ticksPerPart;
+            const secondsPerMinute = 60;
+            const microsecondsPerMinute = secondsPerMinute * 1000000;
+            const beatsPerMinute = song.getBeatsPerMinute();
+            const microsecondsPerBeat = Math.round(microsecondsPerMinute / beatsPerMinute);
+            const midiTicksPerBar = midiTicksPerBeat * song.beatsPerBar;
+            const pitchBendRange = 24;
+            const defaultNoteVelocity = 90;
+            const unrolledBars = [];
+            if (this._enableIntro.checked) {
+                for (let bar = 0; bar < song.loopStart; bar++) {
+                    unrolledBars.push(bar);
+                }
+            }
+            for (let loopIndex = 0; loopIndex < Number(this._loopDropDown.value); loopIndex++) {
+                for (let bar = song.loopStart; bar < song.loopStart + song.loopLength; bar++) {
+                    unrolledBars.push(bar);
+                }
+            }
+            if (this._enableOutro.checked) {
+                for (let bar = song.loopStart + song.loopLength; bar < song.barCount; bar++) {
+                    unrolledBars.push(bar);
+                }
+            }
+            const tracks = [{ isMeta: true, channel: -1, midiChannel: -1, isNoise: false, isDrumset: false }];
+            let midiChannelCounter = 0;
+            let foundADrumset = false;
+            for (let channel = 0; channel < this._doc.song.getChannelCount(); channel++) {
+                if (!foundADrumset && this._doc.song.channels[channel].instruments[0].type == 4) {
+                    tracks.push({ isMeta: false, channel: channel, midiChannel: 9, isNoise: true, isDrumset: true });
+                    foundADrumset = true;
+                }
+                else {
+                    if (midiChannelCounter >= 16)
+                        continue;
+                    tracks.push({ isMeta: false, channel: channel, midiChannel: midiChannelCounter++, isNoise: this._doc.song.getChannelIsNoise(channel), isDrumset: false });
+                    if (midiChannelCounter == 9)
+                        midiChannelCounter++;
+                }
+            }
+            const writer = new ArrayBufferWriter(1024);
+            writer.writeUint32(1297377380);
+            writer.writeUint32(6);
+            writer.writeUint16(1);
+            writer.writeUint16(tracks.length);
+            writer.writeUint16(midiTicksPerBeat);
+            for (const track of tracks) {
+                writer.writeUint32(1297379947);
+                const { isMeta, channel, midiChannel, isNoise, isDrumset } = track;
+                const trackStartIndex = writer.getWriteIndex();
+                writer.writeUint32(0);
+                let prevTime = 0;
+                let barStartTime = 0;
+                const writeEventTime = function (time) {
+                    if (time < prevTime)
+                        throw new Error("Midi event time cannot go backwards.");
+                    writer.writeMidiVariableLength(time - prevTime);
+                    prevTime = time;
+                };
+                const writeControlEvent = function (message, value) {
+                    if (!(value >= 0 && value <= 0x7F))
+                        throw new Error("Midi control event value out of range: " + value);
+                    writer.writeUint8(176 | midiChannel);
+                    writer.writeMidi7Bits(message);
+                    writer.writeMidi7Bits(value | 0);
+                };
+                if (isMeta) {
+                    writeEventTime(0);
+                    writer.writeUint8(255);
+                    writer.writeMidi7Bits(1);
+                    writer.writeMidiAscii("Composed with https://www.beepbox.co");
+                    writeEventTime(0);
+                    writer.writeUint8(255);
+                    writer.writeMidi7Bits(81);
+                    writer.writeMidiVariableLength(3);
+                    writer.writeUint24(microsecondsPerBeat);
+                    writeEventTime(0);
+                    writer.writeUint8(255);
+                    writer.writeMidi7Bits(88);
+                    writer.writeMidiVariableLength(4);
+                    writer.writeUint8(song.beatsPerBar);
+                    writer.writeUint8(2);
+                    writer.writeUint8(24);
+                    writer.writeUint8(8);
+                    const isMinor = Config.scales[song.scale].flags[3] && !Config.scales[song.scale].flags[4];
+                    const key = song.key;
+                    let numSharps = key;
+                    if ((key & 1) == 1)
+                        numSharps += 6;
+                    if (isMinor)
+                        numSharps += 9;
+                    while (numSharps > 6)
+                        numSharps -= 12;
+                    writeEventTime(0);
+                    writer.writeUint8(255);
+                    writer.writeMidi7Bits(89);
+                    writer.writeMidiVariableLength(2);
+                    writer.writeInt8(numSharps);
+                    writer.writeUint8(isMinor ? 1 : 0);
+                    if (this._enableIntro.checked)
+                        barStartTime += midiTicksPerBar * song.loopStart;
+                    writeEventTime(barStartTime);
+                    writer.writeUint8(255);
+                    writer.writeMidi7Bits(6);
+                    writer.writeMidiAscii("Loop Start");
+                    for (let loopIndex = 0; loopIndex < parseInt(this._loopDropDown.value); loopIndex++) {
+                        barStartTime += midiTicksPerBar * song.loopLength;
+                        writeEventTime(barStartTime);
+                        writer.writeUint8(255);
+                        writer.writeMidi7Bits(6);
+                        writer.writeMidiAscii(loopIndex < Number(this._loopDropDown.value) - 1 ? "Loop Repeat" : "Loop End");
+                    }
+                    if (this._enableOutro.checked)
+                        barStartTime += midiTicksPerBar * (song.barCount - song.loopStart - song.loopLength);
+                    if (barStartTime != midiTicksPerBar * unrolledBars.length)
+                        throw new Error("Miscalculated number of bars.");
+                }
+                else {
+                    let channelName = ColorConfig.getChannelColor(song, channel).name + " channel";
+                    writeEventTime(0);
+                    writer.writeUint8(255);
+                    writer.writeMidi7Bits(3);
+                    writer.writeMidiAscii(channelName);
+                    writeEventTime(0);
+                    writeControlEvent(101, 0);
+                    writeEventTime(0);
+                    writeControlEvent(100, 0);
+                    writeEventTime(0);
+                    writeControlEvent(6, pitchBendRange);
+                    writeEventTime(0);
+                    writeControlEvent(38, 0);
+                    writeEventTime(0);
+                    writeControlEvent(101, 127);
+                    writeEventTime(0);
+                    writeControlEvent(100, 127);
+                    let prevInstrumentIndex = -1;
+                    function writeInstrumentSettings(instrumentIndex) {
+                        const instrument = song.channels[channel].instruments[instrumentIndex];
+                        const preset = EditorConfig.valueToPreset(instrument.preset);
+                        if (prevInstrumentIndex != instrumentIndex) {
+                            prevInstrumentIndex = instrumentIndex;
+                            writeEventTime(barStartTime);
+                            writer.writeUint8(255);
+                            writer.writeMidi7Bits(4);
+                            writer.writeMidiAscii("Instrument " + (instrumentIndex + 1));
+                            if (!isDrumset) {
+                                let instrumentProgram = 81;
+                                if (preset != null && preset.midiProgram != undefined) {
+                                    instrumentProgram = preset.midiProgram;
+                                }
+                                else if (instrument.type == 4) {
+                                    instrumentProgram = 116;
+                                }
+                                else {
+                                    const envelopeType = instrument.getFilterEnvelope().type;
+                                    const instrumentDecays = envelopeType == 8 || envelopeType == 4;
+                                    if (instrument.type == 2 || instrument.type == 3) {
+                                        if (isNoise) {
+                                            instrumentProgram = 116;
+                                        }
+                                        else {
+                                            instrumentProgram = instrumentDecays ? 47 : 75;
+                                        }
+                                    }
+                                    else if (instrument.type == 0) {
+                                        const filterInstruments = instrumentDecays
+                                            ? ExportPrompt.midiDecayInstruments
+                                            : ExportPrompt.midiSustainInstruments;
+                                        if (filterInstruments.length > instrument.chipWave) {
+                                            instrumentProgram = filterInstruments[instrument.chipWave];
+                                        }
+                                    }
+                                    else if (instrument.type == 6) {
+                                        instrumentProgram = instrumentDecays ? 0x19 : 81;
+                                    }
+                                    else if (instrument.type == 1 || instrument.type == 5) {
+                                        instrumentProgram = instrumentDecays ? 2 : 81;
+                                    }
+                                    else {
+                                        throw new Error("Unrecognized instrument type.");
+                                    }
+                                }
+                                writeEventTime(barStartTime);
+                                writer.writeUint8(192 | midiChannel);
+                                writer.writeMidi7Bits(instrumentProgram);
+                            }
+                            writeEventTime(barStartTime);
+                            let instrumentVolume = volumeMultToMidiVolume(Synth.instrumentVolumeToVolumeMult(instrument.volume));
+                            writeControlEvent(7, Math.min(0x7f, Math.round(instrumentVolume)));
+                            writeEventTime(barStartTime);
+                            let instrumentPan = (instrument.pan / Config.panCenter - 1) * 0x3f + 0x40;
+                            writeControlEvent(10, Math.min(0x7f, Math.round(instrumentPan)));
+                        }
+                    }
+                    if (song.getPattern(channel, 0) == null) {
+                        writeInstrumentSettings(0);
+                    }
+                    let prevPitchBend = defaultMidiPitchBend;
+                    let prevExpression = defaultMidiExpression;
+                    let shouldResetExpressionAndPitchBend = false;
+                    const channelRoot = isNoise ? Config.spectrumBasePitch : Config.keys[song.key].basePitch;
+                    const intervalScale = isNoise ? Config.noiseInterval : 1;
+                    for (const bar of unrolledBars) {
+                        const pattern = song.getPattern(channel, bar);
+                        if (pattern != null) {
+                            const instrumentIndex = pattern.instrument;
+                            const instrument = song.channels[channel].instruments[instrumentIndex];
+                            const preset = EditorConfig.valueToPreset(instrument.preset);
+                            writeInstrumentSettings(instrumentIndex);
+                            let chordHarmonizes = false;
+                            let usesArpeggio = true;
+                            let polyphony = 1;
+                            chordHarmonizes = instrument.getChord().harmonizes;
+                            usesArpeggio = instrument.getChord().arpeggiates;
+                            if (usesArpeggio) {
+                                if (chordHarmonizes) {
+                                    if (instrument.type == 0) {
+                                        polyphony = 2;
+                                    }
+                                    else if (instrument.type == 1) {
+                                        polyphony = Config.operatorCount;
+                                    }
+                                    else {
+                                        console.error("Unrecognized instrument type for harmonizing arpeggio: " + instrument.type);
+                                    }
+                                }
+                            }
+                            else {
+                                polyphony = Config.maxChordSize;
+                            }
+                            for (let noteIndex = 0; noteIndex < pattern.notes.length; noteIndex++) {
+                                const note = pattern.notes[noteIndex];
+                                const noteStartTime = barStartTime + note.start * midiTicksPerPart;
+                                let pinTime = noteStartTime;
+                                let pinVolume = note.pins[0].volume;
+                                let pinInterval = note.pins[0].interval;
+                                const prevPitches = [-1, -1, -1, -1];
+                                const nextPitches = [-1, -1, -1, -1];
+                                const toneCount = Math.min(polyphony, note.pitches.length);
+                                const velocity = isDrumset ? Math.max(1, Math.round(defaultNoteVelocity * note.pins[0].volume / 3)) : defaultNoteVelocity;
+                                let mainInterval = note.pickMainInterval();
+                                let pitchOffset = mainInterval * intervalScale;
+                                if (!isDrumset) {
+                                    let maxPitchOffset = pitchBendRange;
+                                    let minPitchOffset = -pitchBendRange;
+                                    for (let pinIndex = 1; pinIndex < note.pins.length; pinIndex++) {
+                                        const interval = note.pins[pinIndex].interval * intervalScale;
+                                        maxPitchOffset = Math.min(maxPitchOffset, interval + pitchBendRange);
+                                        minPitchOffset = Math.max(minPitchOffset, interval - pitchBendRange);
+                                    }
+                                    pitchOffset = Math.min(maxPitchOffset, Math.max(minPitchOffset, pitchOffset));
+                                }
+                                for (let pinIndex = 1; pinIndex < note.pins.length; pinIndex++) {
+                                    const nextPinTime = noteStartTime + note.pins[pinIndex].time * midiTicksPerPart;
+                                    const nextPinVolume = note.pins[pinIndex].volume;
+                                    const nextPinInterval = note.pins[pinIndex].interval;
+                                    const length = nextPinTime - pinTime;
+                                    for (let midiTick = 0; midiTick < length; midiTick++) {
+                                        const midiTickTime = pinTime + midiTick;
+                                        const linearVolume = lerp(pinVolume, nextPinVolume, midiTick / length);
+                                        const linearInterval = lerp(pinInterval, nextPinInterval, midiTick / length);
+                                        const interval = linearInterval * intervalScale - pitchOffset;
+                                        const pitchBend = Math.max(0, Math.min(0x3fff, Math.round(0x2000 * (1.0 + interval / pitchBendRange))));
+                                        const expression = Math.min(0x7f, Math.round(volumeMultToMidiExpression(Synth.expressionToVolumeMult(linearVolume))));
+                                        if (pitchBend != prevPitchBend) {
+                                            writeEventTime(midiTickTime);
+                                            writer.writeUint8(224 | midiChannel);
+                                            writer.writeMidi7Bits(pitchBend & 0x7f);
+                                            writer.writeMidi7Bits((pitchBend >> 7) & 0x7f);
+                                            prevPitchBend = pitchBend;
+                                        }
+                                        if (expression != prevExpression && !isDrumset) {
+                                            writeEventTime(midiTickTime);
+                                            writeControlEvent(11, expression);
+                                            prevExpression = expression;
+                                        }
+                                        const noteStarting = midiTickTime == noteStartTime;
+                                        for (let toneIndex = 0; toneIndex < toneCount; toneIndex++) {
+                                            let nextPitch = note.pitches[toneIndex];
+                                            if (isDrumset) {
+                                                nextPitch += mainInterval;
+                                                const drumsetMap = [
+                                                    36,
+                                                    41,
+                                                    45,
+                                                    48,
+                                                    40,
+                                                    39,
+                                                    59,
+                                                    49,
+                                                    46,
+                                                    55,
+                                                    69,
+                                                    54,
+                                                ];
+                                                if (nextPitch < 0 || nextPitch >= drumsetMap.length)
+                                                    throw new Error("Could not find corresponding drumset pitch. " + nextPitch);
+                                                nextPitch = drumsetMap[nextPitch];
+                                            }
+                                            else {
+                                                if (usesArpeggio && note.pitches.length > toneIndex + 1 && toneIndex == toneCount - 1) {
+                                                    const midiTicksSinceBeat = (midiTickTime - barStartTime) % midiTicksPerBeat;
+                                                    const midiTicksPerArpeggio = Config.rhythms[song.rhythm].ticksPerArpeggio * midiTicksPerPart / Config.ticksPerPart;
+                                                    const arpeggio = Math.floor(midiTicksSinceBeat / midiTicksPerArpeggio);
+                                                    nextPitch = note.pitches[toneIndex + getArpeggioPitchIndex(note.pitches.length - toneIndex, song.rhythm, arpeggio)];
+                                                }
+                                                nextPitch = channelRoot + nextPitch * intervalScale + pitchOffset;
+                                                if (preset != null && preset.midiSubharmonicOctaves != undefined) {
+                                                    nextPitch += 12 * preset.midiSubharmonicOctaves;
+                                                }
+                                                else if (isNoise) {
+                                                    nextPitch += 12 * (+EditorConfig.presetCategories.dictionary["Drum Presets"].presets.dictionary["taiko drum"].midiSubharmonicOctaves);
+                                                }
+                                                if (isNoise)
+                                                    nextPitch *= 2;
+                                            }
+                                            nextPitch = Math.max(0, Math.min(127, nextPitch));
+                                            nextPitches[toneIndex] = nextPitch;
+                                            if (!noteStarting && prevPitches[toneIndex] != nextPitches[toneIndex]) {
+                                                writeEventTime(midiTickTime);
+                                                writer.writeUint8(128 | midiChannel);
+                                                writer.writeMidi7Bits(prevPitches[toneIndex]);
+                                                writer.writeMidi7Bits(velocity);
+                                            }
+                                        }
+                                        for (let toneIndex = 0; toneIndex < toneCount; toneIndex++) {
+                                            if (noteStarting || prevPitches[toneIndex] != nextPitches[toneIndex]) {
+                                                writeEventTime(midiTickTime);
+                                                writer.writeUint8(144 | midiChannel);
+                                                writer.writeMidi7Bits(nextPitches[toneIndex]);
+                                                writer.writeMidi7Bits(velocity);
+                                                prevPitches[toneIndex] = nextPitches[toneIndex];
+                                            }
+                                        }
+                                    }
+                                    pinTime = nextPinTime;
+                                    pinVolume = nextPinVolume;
+                                    pinInterval = nextPinInterval;
+                                }
+                                const noteEndTime = barStartTime + note.end * midiTicksPerPart;
+                                for (let toneIndex = 0; toneIndex < toneCount; toneIndex++) {
+                                    writeEventTime(noteEndTime);
+                                    writer.writeUint8(128 | midiChannel);
+                                    writer.writeMidi7Bits(prevPitches[toneIndex]);
+                                    writer.writeMidi7Bits(velocity);
+                                }
+                                shouldResetExpressionAndPitchBend = true;
+                            }
+                        }
+                        else {
+                            if (shouldResetExpressionAndPitchBend) {
+                                shouldResetExpressionAndPitchBend = false;
+                                if (prevExpression != defaultMidiExpression) {
+                                    prevExpression = defaultMidiExpression;
+                                    writeEventTime(barStartTime);
+                                    writeControlEvent(11, prevExpression);
+                                }
+                                if (prevPitchBend != defaultMidiPitchBend) {
+                                    prevPitchBend = defaultMidiPitchBend;
+                                    writeEventTime(barStartTime);
+                                    writer.writeUint8(224 | midiChannel);
+                                    writer.writeMidi7Bits(prevPitchBend & 0x7f);
+                                    writer.writeMidi7Bits((prevPitchBend >> 7) & 0x7f);
+                                }
+                            }
+                        }
+                        barStartTime += midiTicksPerBar;
+                    }
+                }
+                writeEventTime(barStartTime);
+                writer.writeUint8(255);
+                writer.writeMidi7Bits(47);
+                writer.writeMidiVariableLength(0x00);
+                writer.rewriteUint32(trackStartIndex, writer.getWriteIndex() - trackStartIndex - 4);
+            }
+            const blob = new Blob([writer.toCompactArrayBuffer()], { type: "audio/midi" });
+            save(blob, this._fileName.value.trim() + ".mid");
+            this._close();
+        }
+        _exportToJson() {
+            const jsonObject = this._doc.song.toJsonObject(this._enableIntro.checked, Number(this._loopDropDown.value), this._enableOutro.checked);
+            const jsonString = JSON.stringify(jsonObject, null, '\t');
+            const blob = new Blob([jsonString], { type: "application/json" });
+            save(blob, this._fileName.value.trim() + ".json");
+            this._close();
+        }
+    }
+    ExportPrompt.midiSustainInstruments = [
+        0x4A,
+        0x47,
+        0x50,
+        0x46,
+        0x46,
+        0x44,
+        0x44,
+        0x51,
+        0x51,
+        0x51,
+        0x51,
+        0x51,
+        0x51,
+    ];
+    ExportPrompt.midiDecayInstruments = [
+        0x21,
+        0x2E,
+        0x2E,
+        0x06,
+        0x06,
+        0x18,
+        0x18,
+        0x19,
+        0x19,
+        0x19,
+        0x19,
+        0x6A,
+        0x6A,
+    ];
+
+    class ArrayBufferReader {
+        constructor(data) {
+            this._readIndex = 0;
+            this._data = data;
+        }
+        getReadIndex() {
+            return this._readIndex;
+        }
+        readUint32() {
+            if (this._readIndex + 4 > this._data.byteLength)
+                throw new Error("Reading past the end of the buffer.");
+            const result = this._data.getUint32(this._readIndex, false);
+            this._readIndex += 4;
+            return result;
+        }
+        readUint24() {
+            return (this.readUint8() << 16) | (this.readUint8() << 8) | (this.readUint8());
+        }
+        readUint16() {
+            if (this._readIndex + 2 > this._data.byteLength)
+                throw new Error("Reading past the end of the buffer.");
+            const result = this._data.getUint16(this._readIndex, false);
+            this._readIndex += 2;
+            return result;
+        }
+        readUint8() {
+            if (this._readIndex + 1 > this._data.byteLength)
+                throw new Error("Reading past the end of the buffer.");
+            const result = this._data.getUint8(this._readIndex);
+            this._readIndex++;
+            return result;
+        }
+        readInt8() {
+            if (this._readIndex + 1 > this._data.byteLength)
+                throw new Error("Reading past the end of the buffer.");
+            const result = this._data.getInt8(this._readIndex);
+            this._readIndex++;
+            return result;
+        }
+        peakUint8() {
+            if (this._readIndex + 1 > this._data.byteLength)
+                throw new Error("Reading past the end of the buffer.");
+            return this._data.getUint8(this._readIndex);
+        }
+        readMidi7Bits() {
+            const result = this.readUint8();
+            if (result >= 0x80)
+                console.log("7 bit value contained 8th bit! value " + result + ", index " + this._readIndex);
+            return result & 0x7f;
+        }
+        readMidiVariableLength() {
+            let result = 0;
+            for (let i = 0; i < 4; i++) {
+                const nextByte = this.readUint8();
+                result += nextByte & 0x7f;
+                if (nextByte & 0x80) {
+                    result = result << 7;
+                }
+                else {
+                    break;
+                }
+            }
+            return result;
+        }
+        skipBytes(length) {
+            this._readIndex += length;
+        }
+        hasMore() {
+            return this._data.byteLength > this._readIndex;
+        }
+        getReaderForNextBytes(length) {
+            if (this._readIndex + length > this._data.byteLength)
+                throw new Error("Reading past the end of the buffer.");
+            const result = new ArrayBufferReader(new DataView(this._data.buffer, this._data.byteOffset + this._readIndex, length));
+            this.skipBytes(length);
+            return result;
+        }
+    }
+
+    const { button: button$6, p: p$1, div: div$6, h2: h2$6, input: input$5 } = HTML;
+    class ImportPrompt {
+        constructor(_doc) {
+            this._doc = _doc;
+            this._fileInput = input$5({ type: "file", accept: ".json,application/json,.mid,.midi,audio/midi,audio/x-midi" });
+            this._cancelButton = button$6({ class: "cancelButton" });
+            this.container = div$6({ class: "prompt noSelection", style: "width: 300px;" }, h2$6("Import"), p$1({ style: "text-align: left; margin: 0.5em 0;" }, "BeepBox songs can be exported and re-imported as .json files. You could also use other means to make .json files for BeepBox as long as they follow the same structure."), p$1({ style: "text-align: left; margin: 0.5em 0;" }, "BeepBox can also (crudely) import .mid files. There are many tools available for creating .mid files. Shorter and simpler songs are more likely to work well."), this._fileInput, this._cancelButton);
+            this._close = () => {
+                this._doc.undo();
+            };
+            this.cleanUp = () => {
+                this._fileInput.removeEventListener("change", this._whenFileSelected);
+                this._cancelButton.removeEventListener("click", this._close);
+            };
+            this._whenFileSelected = () => {
+                const file = this._fileInput.files[0];
+                if (!file)
+                    return;
+                const extension = file.name.slice((file.name.lastIndexOf(".") - 1 >>> 0) + 2);
+                if (extension == "json") {
+                    const reader = new FileReader();
+                    reader.addEventListener("load", (event) => {
+                        this._doc.prompt = null;
+                        this._doc.goBackToStart();
+                        this._doc.record(new ChangeSong(this._doc, reader.result), true, true);
+                    });
+                    reader.readAsText(file);
+                }
+                else if (extension == "midi" || extension == "mid") {
+                    const reader = new FileReader();
+                    reader.addEventListener("load", (event) => {
+                        this._doc.prompt = null;
+                        this._doc.goBackToStart();
+                        this._parseMidiFile(reader.result);
+                    });
+                    reader.readAsArrayBuffer(file);
+                }
+                else {
+                    console.error("Unrecognized file extension.");
+                    this._close();
+                }
+            };
+            this._fileInput.select();
+            setTimeout(() => this._fileInput.focus());
+            this._fileInput.addEventListener("change", this._whenFileSelected);
+            this._cancelButton.addEventListener("click", this._close);
+        }
+        _parseMidiFile(buffer) {
+            const reader = new ArrayBufferReader(new DataView(buffer));
+            let headerReader = null;
+            const tracks = [];
+            while (reader.hasMore()) {
+                const chunkType = reader.readUint32();
+                const chunkLength = reader.readUint32();
+                if (chunkType == 1297377380) {
+                    if (headerReader == null) {
+                        headerReader = reader.getReaderForNextBytes(chunkLength);
+                    }
+                    else {
+                        console.error("This MIDI file has more than one header chunk.");
+                    }
+                }
+                else if (chunkType == 1297379947) {
+                    const trackReader = reader.getReaderForNextBytes(chunkLength);
+                    if (trackReader.hasMore()) {
+                        tracks.push({
+                            reader: trackReader,
+                            nextEventMidiTick: trackReader.readMidiVariableLength(),
+                            ended: false,
+                            runningStatus: -1,
+                        });
+                    }
+                }
+                else {
+                    reader.skipBytes(chunkLength);
+                }
+            }
+            if (headerReader == null) {
+                console.error("No header chunk found in this MIDI file.");
+                this._close();
+                return;
+            }
+            const fileFormat = headerReader.readUint16();
+            headerReader.readUint16();
+            const midiTicksPerBeat = headerReader.readUint16();
+            let currentIndependentTrackIndex = 0;
+            const currentTrackIndices = [];
+            const independentTracks = (fileFormat == 2);
+            if (independentTracks) {
+                currentTrackIndices.push(currentIndependentTrackIndex);
+            }
+            else {
+                for (let trackIndex = 0; trackIndex < tracks.length; trackIndex++) {
+                    currentTrackIndices.push(trackIndex);
+                }
+            }
+            const channelRPNMSB = [0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff];
+            const channelRPNLSB = [0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff];
+            const pitchBendRangeMSB = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2];
+            const pitchBendRangeLSB = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            const currentInstrumentProgram = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            const currentInstrumentVolumes = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100];
+            const currentInstrumentPans = [64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64];
+            const noteEvents = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []];
+            const pitchBendEvents = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []];
+            const expressionEvents = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []];
+            let microsecondsPerBeat = 500000;
+            let beatsPerBar = 8;
+            let numSharps = 0;
+            let isMinor = false;
+            let currentMidiTick = 0;
+            while (true) {
+                let nextEventMidiTick = Number.MAX_VALUE;
+                let anyTrackHasMore = false;
+                for (const trackIndex of currentTrackIndices) {
+                    const track = tracks[trackIndex];
+                    while (!track.ended && track.nextEventMidiTick == currentMidiTick) {
+                        const peakStatus = track.reader.peakUint8();
+                        const eventStatus = (peakStatus & 0x80) ? track.reader.readUint8() : track.runningStatus;
+                        const eventType = eventStatus & 0xF0;
+                        const eventChannel = eventStatus & 0x0F;
+                        if (eventType != 240) {
+                            track.runningStatus = eventStatus;
+                        }
+                        let foundTrackEndEvent = false;
+                        switch (eventType) {
+                            case 128:
+                                {
+                                    const pitch = track.reader.readMidi7Bits();
+                                    track.reader.readMidi7Bits();
+                                    noteEvents[eventChannel].push({ midiTick: currentMidiTick, pitch: pitch, velocity: 0.0, program: -1, instrumentVolume: -1, instrumentPan: -1, on: false });
+                                }
+                                break;
+                            case 144:
+                                {
+                                    const pitch = track.reader.readMidi7Bits();
+                                    const velocity = track.reader.readMidi7Bits();
+                                    if (velocity == 0) {
+                                        noteEvents[eventChannel].push({ midiTick: currentMidiTick, pitch: pitch, velocity: 0.0, program: -1, instrumentVolume: -1, instrumentPan: -1, on: false });
+                                    }
+                                    else {
+                                        const volume = Math.max(0, Math.min(Config.volumeRange - 1, Math.round(Synth.volumeMultToInstrumentVolume(midiVolumeToVolumeMult(currentInstrumentVolumes[eventChannel])))));
+                                        const pan = Math.max(0, Math.min(Config.panMax, Math.round(((currentInstrumentPans[eventChannel] - 64) / 63 + 1) * Config.panCenter)));
+                                        noteEvents[eventChannel].push({
+                                            midiTick: currentMidiTick,
+                                            pitch: pitch,
+                                            velocity: Math.max(0.0, Math.min(1.0, (velocity + 14) / 90.0)),
+                                            program: currentInstrumentProgram[eventChannel],
+                                            instrumentVolume: volume,
+                                            instrumentPan: pan,
+                                            on: true,
+                                        });
+                                    }
+                                }
+                                break;
+                            case 160:
+                                {
+                                    track.reader.readMidi7Bits();
+                                    track.reader.readMidi7Bits();
+                                }
+                                break;
+                            case 176:
+                                {
+                                    const message = track.reader.readMidi7Bits();
+                                    const value = track.reader.readMidi7Bits();
+                                    switch (message) {
+                                        case 6:
+                                            {
+                                                if (channelRPNMSB[eventChannel] == 0 && channelRPNLSB[eventChannel] == 0) {
+                                                    pitchBendRangeMSB[eventChannel] = value;
+                                                }
+                                            }
+                                            break;
+                                        case 7:
+                                            {
+                                                currentInstrumentVolumes[eventChannel] = value;
+                                            }
+                                            break;
+                                        case 10:
+                                            {
+                                                currentInstrumentPans[eventChannel] = value;
+                                            }
+                                            break;
+                                        case 11:
+                                            {
+                                                expressionEvents[eventChannel].push({ midiTick: currentMidiTick, volume: Synth.volumeMultToExpression(midiExpressionToVolumeMult(value)) });
+                                            }
+                                            break;
+                                        case 38:
+                                            {
+                                                if (channelRPNMSB[eventChannel] == 0 && channelRPNLSB[eventChannel] == 0) {
+                                                    pitchBendRangeLSB[eventChannel] = value;
+                                                }
+                                            }
+                                            break;
+                                        case 100:
+                                            {
+                                                channelRPNLSB[eventChannel] = value;
+                                            }
+                                            break;
+                                        case 101:
+                                            {
+                                                channelRPNMSB[eventChannel] = value;
+                                            }
+                                            break;
+                                    }
+                                }
+                                break;
+                            case 192:
+                                {
+                                    const program = track.reader.readMidi7Bits();
+                                    currentInstrumentProgram[eventChannel] = program;
+                                }
+                                break;
+                            case 208:
+                                {
+                                    track.reader.readMidi7Bits();
+                                }
+                                break;
+                            case 224:
+                                {
+                                    const lsb = track.reader.readMidi7Bits();
+                                    const msb = track.reader.readMidi7Bits();
+                                    const pitchBend = (((msb << 7) | lsb) / 0x2000) - 1.0;
+                                    const pitchBendRange = pitchBendRangeMSB[eventChannel] + pitchBendRangeLSB[eventChannel] * 0.01;
+                                    const interval = pitchBend * pitchBendRange;
+                                    pitchBendEvents[eventChannel].push({ midiTick: currentMidiTick, interval: interval });
+                                }
+                                break;
+                            case 240:
+                                {
+                                    if (eventStatus == 255) {
+                                        const message = track.reader.readMidi7Bits();
+                                        const length = track.reader.readMidiVariableLength();
+                                        if (message == 47) {
+                                            foundTrackEndEvent = true;
+                                            track.reader.skipBytes(length);
+                                        }
+                                        else if (message == 81) {
+                                            microsecondsPerBeat = track.reader.readUint24();
+                                            track.reader.skipBytes(length - 3);
+                                        }
+                                        else if (message == 88) {
+                                            const numerator = track.reader.readUint8();
+                                            let denominatorExponent = track.reader.readUint8();
+                                            track.reader.readUint8();
+                                            track.reader.readUint8();
+                                            track.reader.skipBytes(length - 4);
+                                            beatsPerBar = numerator * 4;
+                                            while ((beatsPerBar & 1) == 0 && (denominatorExponent > 0 || beatsPerBar > Config.beatsPerBarMax) && beatsPerBar >= Config.beatsPerBarMin * 2) {
+                                                beatsPerBar = beatsPerBar >> 1;
+                                                denominatorExponent = denominatorExponent - 1;
+                                            }
+                                            beatsPerBar = Math.max(Config.beatsPerBarMin, Math.min(Config.beatsPerBarMax, beatsPerBar));
+                                        }
+                                        else if (message == 89) {
+                                            numSharps = track.reader.readInt8();
+                                            isMinor = track.reader.readUint8() == 1;
+                                            track.reader.skipBytes(length - 2);
+                                        }
+                                        else {
+                                            track.reader.skipBytes(length);
+                                        }
+                                    }
+                                    else if (eventStatus == 0xF0 || eventStatus == 0xF7) {
+                                        const length = track.reader.readMidiVariableLength();
+                                        track.reader.skipBytes(length);
+                                    }
+                                    else {
+                                        console.error("Unrecognized event status: " + eventStatus);
+                                        this._close();
+                                        return;
+                                    }
+                                }
+                                break;
+                            default: {
+                                console.error("Unrecognized event type: " + eventType);
+                                this._close();
+                                return;
+                            }
+                        }
+                        if (!foundTrackEndEvent && track.reader.hasMore()) {
+                            track.nextEventMidiTick = currentMidiTick + track.reader.readMidiVariableLength();
+                        }
+                        else {
+                            track.ended = true;
+                            if (independentTracks) {
+                                currentIndependentTrackIndex++;
+                                if (currentIndependentTrackIndex < tracks.length) {
+                                    currentTrackIndices[0] = currentIndependentTrackIndex;
+                                    tracks[currentIndependentTrackIndex].nextEventMidiTick += currentMidiTick;
+                                    nextEventMidiTick = Math.min(nextEventMidiTick, tracks[currentIndependentTrackIndex].nextEventMidiTick);
+                                    anyTrackHasMore = true;
+                                }
+                            }
+                        }
+                    }
+                    if (!track.ended) {
+                        anyTrackHasMore = true;
+                        nextEventMidiTick = Math.min(nextEventMidiTick, track.nextEventMidiTick);
+                    }
+                }
+                if (anyTrackHasMore) {
+                    currentMidiTick = nextEventMidiTick;
+                }
+                else {
+                    break;
+                }
+            }
+            const microsecondsPerMinute = 60 * 1000 * 1000;
+            const beatsPerMinute = Math.max(Config.tempoMin, Math.min(Config.tempoMax, Math.round(microsecondsPerMinute / microsecondsPerBeat)));
+            const midiTicksPerPart = midiTicksPerBeat / Config.partsPerBeat;
+            const partsPerBar = Config.partsPerBeat * beatsPerBar;
+            const songTotalBars = Math.ceil(currentMidiTick / midiTicksPerPart / partsPerBar);
+            function quantizeMidiTickToPart(midiTick) {
+                return Math.round(midiTick / midiTicksPerPart);
+            }
+            let key = numSharps;
+            if (isMinor)
+                key += 3;
+            if ((key & 1) == 1)
+                key += 6;
+            while (key < 0)
+                key += 12;
+            key = key % 12;
+            const pitchChannels = [];
+            const noiseChannels = [];
+            for (let midiChannel = 0; midiChannel < 16; midiChannel++) {
+                if (noteEvents[midiChannel].length == 0)
+                    continue;
+                const channel = new Channel();
+                const channelPresetValue = EditorConfig.midiProgramToPresetValue(noteEvents[midiChannel][0].program);
+                const channelPreset = (channelPresetValue == null) ? null : EditorConfig.valueToPreset(channelPresetValue);
+                const isDrumsetChannel = (midiChannel == 9);
+                const isNoiseChannel = isDrumsetChannel || (channelPreset != null && channelPreset.isNoise == true);
+                const channelBasePitch = isNoiseChannel ? Config.spectrumBasePitch : Config.keys[key].basePitch;
+                const intervalScale = isNoiseChannel ? Config.noiseInterval : 1;
+                const midiIntervalScale = isNoiseChannel ? 0.5 : 1;
+                const channelMaxPitch = isNoiseChannel ? Config.drumCount - 1 : Config.maxPitch;
+                if (isNoiseChannel) {
+                    if (isDrumsetChannel) {
+                        noiseChannels.unshift(channel);
+                    }
+                    else {
+                        noiseChannels.push(channel);
+                    }
+                }
+                else {
+                    pitchChannels.push(channel);
+                }
+                let currentVelocity = 1.0;
+                let currentProgram = 0;
+                let currentInstrumentVolume = 0;
+                let currentInstrumentPan = Config.panCenter;
+                if (isDrumsetChannel) {
+                    const heldPitches = [];
+                    let currentBar = -1;
+                    let pattern = null;
+                    let prevEventPart = 0;
+                    let setInstrumentVolume = false;
+                    const presetValue = EditorConfig.nameToPresetValue("standard drumset");
+                    const preset = EditorConfig.valueToPreset(presetValue);
+                    const instrument = new Instrument(false);
+                    instrument.fromJsonObject(preset.settings, false);
+                    instrument.preset = presetValue;
+                    channel.instruments.push(instrument);
+                    for (let noteEventIndex = 0; noteEventIndex <= noteEvents[midiChannel].length; noteEventIndex++) {
+                        const noMoreNotes = noteEventIndex == noteEvents[midiChannel].length;
+                        const noteEvent = noMoreNotes ? null : noteEvents[midiChannel][noteEventIndex];
+                        const nextEventPart = noteEvent == null ? Number.MAX_SAFE_INTEGER : quantizeMidiTickToPart(noteEvent.midiTick);
+                        if (heldPitches.length > 0 && nextEventPart > prevEventPart && (noteEvent == null || noteEvent.on)) {
+                            const bar = Math.floor(prevEventPart / partsPerBar);
+                            const barStartPart = bar * partsPerBar;
+                            if (currentBar != bar || pattern == null) {
+                                currentBar++;
+                                while (currentBar < bar) {
+                                    channel.bars[currentBar] = 0;
+                                    currentBar++;
+                                }
+                                pattern = new Pattern();
+                                channel.patterns.push(pattern);
+                                channel.bars[currentBar] = channel.patterns.length;
+                                pattern.instrument = 0;
+                            }
+                            if (!setInstrumentVolume || instrument.volume > currentInstrumentVolume) {
+                                instrument.volume = currentInstrumentVolume;
+                                instrument.pan = currentInstrumentPan;
+                                setInstrumentVolume = true;
+                            }
+                            const drumFreqs = [];
+                            let minDuration = channelMaxPitch;
+                            let maxDuration = 0;
+                            let expression = 1;
+                            for (const pitch of heldPitches) {
+                                const drum = analogousDrumMap[pitch];
+                                if (drumFreqs.indexOf(drum.frequency) == -1) {
+                                    drumFreqs.push(drum.frequency);
+                                }
+                                expression = Math.max(expression, Math.round(drum.volume * currentVelocity));
+                                minDuration = Math.min(minDuration, drum.duration);
+                                maxDuration = Math.max(maxDuration, drum.duration);
+                            }
+                            const duration = Math.min(maxDuration, Math.max(minDuration, 2));
+                            const noteStartPart = prevEventPart - barStartPart;
+                            const noteEndPart = Math.min(partsPerBar, Math.min(nextEventPart - barStartPart, noteStartPart + duration * 6));
+                            const note = new Note(-1, noteStartPart, noteEndPart, expression, true);
+                            note.pitches.length = 0;
+                            for (let pitchIndex = 0; pitchIndex < Math.min(Config.maxChordSize, drumFreqs.length); pitchIndex++) {
+                                const heldPitch = drumFreqs[pitchIndex + Math.max(0, drumFreqs.length - Config.maxChordSize)];
+                                if (note.pitches.indexOf(heldPitch) == -1) {
+                                    note.pitches.push(heldPitch);
+                                }
+                            }
+                            pattern.notes.push(note);
+                            heldPitches.length = 0;
+                        }
+                        if (noteEvent != null && noteEvent.on && analogousDrumMap[noteEvent.pitch] != undefined) {
+                            heldPitches.push(noteEvent.pitch);
+                            prevEventPart = nextEventPart;
+                            currentVelocity = noteEvent.velocity;
+                            currentInstrumentVolume = noteEvent.instrumentVolume;
+                            currentInstrumentPan = noteEvent.instrumentPan;
+                        }
+                    }
+                }
+                else {
+                    let currentMidiInterval = 0.0;
+                    let currentMidiExpression = 3.0;
+                    let pitchBendEventIndex = 0;
+                    let expressionEventIndex = 0;
+                    function updateCurrentMidiInterval(midiTick) {
+                        while (pitchBendEventIndex < pitchBendEvents[midiChannel].length && pitchBendEvents[midiChannel][pitchBendEventIndex].midiTick <= midiTick) {
+                            currentMidiInterval = pitchBendEvents[midiChannel][pitchBendEventIndex].interval;
+                            pitchBendEventIndex++;
+                        }
+                    }
+                    function updateCurrentMidiExpression(midiTick) {
+                        while (expressionEventIndex < expressionEvents[midiChannel].length && expressionEvents[midiChannel][expressionEventIndex].midiTick <= midiTick) {
+                            currentMidiExpression = expressionEvents[midiChannel][expressionEventIndex].volume;
+                            expressionEventIndex++;
+                        }
+                    }
+                    const instrumentByProgram = [];
+                    const heldPitches = [];
+                    let currentBar = -1;
+                    let pattern = null;
+                    let prevEventMidiTick = 0;
+                    let prevEventPart = 0;
+                    let pitchSum = 0;
+                    let pitchCount = 0;
+                    for (let noteEvent of noteEvents[midiChannel]) {
+                        const nextEventMidiTick = noteEvent.midiTick;
+                        const nextEventPart = quantizeMidiTickToPart(nextEventMidiTick);
+                        if (heldPitches.length > 0 && nextEventPart > prevEventPart) {
+                            const startBar = Math.floor(prevEventPart / partsPerBar);
+                            const endBar = Math.ceil(nextEventPart / partsPerBar);
+                            for (let bar = startBar; bar < endBar; bar++) {
+                                const barStartPart = bar * partsPerBar;
+                                const barStartMidiTick = bar * beatsPerBar * midiTicksPerBeat;
+                                const barEndMidiTick = (bar + 1) * beatsPerBar * midiTicksPerBeat;
+                                const noteStartPart = Math.max(0, prevEventPart - barStartPart);
+                                const noteEndPart = Math.min(partsPerBar, nextEventPart - barStartPart);
+                                const noteStartMidiTick = Math.max(barStartMidiTick, prevEventMidiTick);
+                                const noteEndMidiTick = Math.min(barEndMidiTick, nextEventMidiTick);
+                                if (noteStartPart < noteEndPart) {
+                                    const presetValue = EditorConfig.midiProgramToPresetValue(currentProgram);
+                                    const preset = (presetValue == null) ? null : EditorConfig.valueToPreset(presetValue);
+                                    if (currentBar != bar || pattern == null) {
+                                        currentBar++;
+                                        while (currentBar < bar) {
+                                            channel.bars[currentBar] = 0;
+                                            currentBar++;
+                                        }
+                                        pattern = new Pattern();
+                                        channel.patterns.push(pattern);
+                                        channel.bars[currentBar] = channel.patterns.length;
+                                        if (instrumentByProgram[currentProgram] == undefined) {
+                                            const instrument = new Instrument(isNoiseChannel);
+                                            instrumentByProgram[currentProgram] = instrument;
+                                            if (presetValue != null && preset != null && (preset.isNoise == true) == isNoiseChannel) {
+                                                instrument.fromJsonObject(preset.settings, isNoiseChannel);
+                                                instrument.preset = presetValue;
+                                            }
+                                            else {
+                                                instrument.setTypeAndReset(isNoiseChannel ? 2 : 0, isNoiseChannel);
+                                                instrument.chord = 0;
+                                            }
+                                            instrument.volume = currentInstrumentVolume;
+                                            instrument.pan = currentInstrumentPan;
+                                            channel.instruments.push(instrument);
+                                        }
+                                        pattern.instrument = channel.instruments.indexOf(instrumentByProgram[currentProgram]);
+                                    }
+                                    if (instrumentByProgram[currentProgram] != undefined) {
+                                        instrumentByProgram[currentProgram].volume = Math.min(instrumentByProgram[currentProgram].volume, currentInstrumentVolume);
+                                        instrumentByProgram[currentProgram].pan = Math.min(instrumentByProgram[currentProgram].pan, currentInstrumentPan);
+                                    }
+                                    const note = new Note(-1, noteStartPart, noteEndPart, 3, false);
+                                    note.pins.length = 0;
+                                    updateCurrentMidiInterval(noteStartMidiTick);
+                                    updateCurrentMidiExpression(noteStartMidiTick);
+                                    const shiftedHeldPitch = heldPitches[0] * midiIntervalScale - channelBasePitch;
+                                    const initialBeepBoxPitch = Math.round((shiftedHeldPitch + currentMidiInterval) / intervalScale);
+                                    const heldPitchOffset = Math.round(currentMidiInterval - channelBasePitch);
+                                    let firstPin = makeNotePin(0, 0, Math.round(currentVelocity * currentMidiExpression));
+                                    note.pins.push(firstPin);
+                                    const potentialPins = [
+                                        { part: 0, pitch: initialBeepBoxPitch, volume: firstPin.volume, keyPitch: false, keyVolume: false }
+                                    ];
+                                    let prevPinIndex = 0;
+                                    let prevPartPitch = (shiftedHeldPitch + currentMidiInterval) / intervalScale;
+                                    let prevPartExpression = currentVelocity * currentMidiExpression;
+                                    for (let part = noteStartPart + 1; part <= noteEndPart; part++) {
+                                        const midiTick = Math.max(noteStartMidiTick, Math.min(noteEndMidiTick - 1, Math.round(midiTicksPerPart * (part + barStartPart))));
+                                        const noteRelativePart = part - noteStartPart;
+                                        const lastPart = (part == noteEndPart);
+                                        updateCurrentMidiInterval(midiTick);
+                                        updateCurrentMidiExpression(midiTick);
+                                        const partPitch = (currentMidiInterval + shiftedHeldPitch) / intervalScale;
+                                        const partExpression = currentVelocity * currentMidiExpression;
+                                        const nearestPitch = Math.round(partPitch);
+                                        const pitchIsNearInteger = Math.abs(partPitch - nearestPitch) < 0.01;
+                                        const pitchCrossedInteger = (Math.abs(prevPartPitch - Math.round(prevPartPitch)) < 0.01)
+                                            ? Math.abs(partPitch - prevPartPitch) >= 1.0
+                                            : Math.floor(partPitch) != Math.floor(prevPartPitch);
+                                        const keyPitch = pitchIsNearInteger || pitchCrossedInteger;
+                                        const nearestExpression = Math.round(partExpression);
+                                        const expressionIsNearInteger = Math.abs(partExpression - nearestExpression) < 0.01;
+                                        const expressionCrossedInteger = (Math.abs(prevPartExpression - Math.round(prevPartExpression)))
+                                            ? Math.abs(partExpression - prevPartExpression) >= 1.0
+                                            : Math.floor(partExpression) != Math.floor(prevPartExpression);
+                                        const keyExpression = expressionIsNearInteger || expressionCrossedInteger;
+                                        prevPartPitch = partPitch;
+                                        prevPartExpression = partExpression;
+                                        if (keyPitch || keyExpression || lastPart) {
+                                            const currentPin = { part: noteRelativePart, pitch: nearestPitch, volume: nearestExpression, keyPitch: keyPitch || lastPart, keyVolume: keyExpression || lastPart };
+                                            const prevPin = potentialPins[prevPinIndex];
+                                            let addPin = false;
+                                            let addPinAtIndex = Number.MAX_VALUE;
+                                            if (currentPin.keyPitch) {
+                                                const slope = (currentPin.pitch - prevPin.pitch) / (currentPin.part - prevPin.part);
+                                                let furthestIntervalDistance = Math.abs(slope);
+                                                let addIntervalPin = false;
+                                                let addIntervalPinAtIndex = Number.MAX_VALUE;
+                                                for (let potentialIndex = prevPinIndex + 1; potentialIndex < potentialPins.length; potentialIndex++) {
+                                                    const potentialPin = potentialPins[potentialIndex];
+                                                    if (potentialPin.keyPitch) {
+                                                        const interpolatedInterval = prevPin.pitch + slope * (potentialPin.part - prevPin.part);
+                                                        const distance = Math.abs(interpolatedInterval - potentialPin.pitch);
+                                                        if (furthestIntervalDistance < distance) {
+                                                            furthestIntervalDistance = distance;
+                                                            addIntervalPin = true;
+                                                            addIntervalPinAtIndex = potentialIndex;
+                                                        }
+                                                    }
+                                                }
+                                                if (addIntervalPin) {
+                                                    addPin = true;
+                                                    addPinAtIndex = Math.min(addPinAtIndex, addIntervalPinAtIndex);
+                                                }
+                                            }
+                                            if (currentPin.keyVolume) {
+                                                const slope = (currentPin.volume - prevPin.volume) / (currentPin.part - prevPin.part);
+                                                let furthestVolumeDistance = Math.abs(slope);
+                                                let addVolumePin = false;
+                                                let addVolumePinAtIndex = Number.MAX_VALUE;
+                                                for (let potentialIndex = prevPinIndex + 1; potentialIndex < potentialPins.length; potentialIndex++) {
+                                                    const potentialPin = potentialPins[potentialIndex];
+                                                    if (potentialPin.keyVolume) {
+                                                        const interpolatedVolume = prevPin.volume + slope * (potentialPin.part - prevPin.part);
+                                                        const distance = Math.abs(interpolatedVolume - potentialPin.volume);
+                                                        if (furthestVolumeDistance < distance) {
+                                                            furthestVolumeDistance = distance;
+                                                            addVolumePin = true;
+                                                            addVolumePinAtIndex = potentialIndex;
+                                                        }
+                                                    }
+                                                }
+                                                if (addVolumePin) {
+                                                    addPin = true;
+                                                    addPinAtIndex = Math.min(addPinAtIndex, addVolumePinAtIndex);
+                                                }
+                                            }
+                                            if (addPin) {
+                                                const toBePinned = potentialPins[addPinAtIndex];
+                                                note.pins.push(makeNotePin(toBePinned.pitch - initialBeepBoxPitch, toBePinned.part, toBePinned.volume));
+                                                prevPinIndex = addPinAtIndex;
+                                            }
+                                            potentialPins.push(currentPin);
+                                        }
+                                    }
+                                    const lastToBePinned = potentialPins[potentialPins.length - 1];
+                                    note.pins.push(makeNotePin(lastToBePinned.pitch - initialBeepBoxPitch, lastToBePinned.part, lastToBePinned.volume));
+                                    let maxPitch = channelMaxPitch;
+                                    let minPitch = 0;
+                                    for (const notePin of note.pins) {
+                                        maxPitch = Math.min(maxPitch, channelMaxPitch - notePin.interval);
+                                        minPitch = Math.min(minPitch, -notePin.interval);
+                                    }
+                                    note.pitches.length = 0;
+                                    for (let pitchIndex = 0; pitchIndex < Math.min(Config.maxChordSize, heldPitches.length); pitchIndex++) {
+                                        let heldPitch = heldPitches[pitchIndex + Math.max(0, heldPitches.length - Config.maxChordSize)] * midiIntervalScale;
+                                        if (preset != null && preset.midiSubharmonicOctaves != undefined) {
+                                            heldPitch -= 12 * preset.midiSubharmonicOctaves;
+                                        }
+                                        const shiftedPitch = Math.max(minPitch, Math.min(maxPitch, Math.round((heldPitch + heldPitchOffset) / intervalScale)));
+                                        if (note.pitches.indexOf(shiftedPitch) == -1) {
+                                            note.pitches.push(shiftedPitch);
+                                            const weight = note.end - note.start;
+                                            pitchSum += shiftedPitch * weight;
+                                            pitchCount += weight;
+                                        }
+                                    }
+                                    pattern.notes.push(note);
+                                }
+                            }
+                        }
+                        if (heldPitches.indexOf(noteEvent.pitch) != -1) {
+                            heldPitches.splice(heldPitches.indexOf(noteEvent.pitch), 1);
+                        }
+                        if (noteEvent.on) {
+                            heldPitches.push(noteEvent.pitch);
+                            currentVelocity = noteEvent.velocity;
+                            currentProgram = noteEvent.program;
+                            currentInstrumentVolume = noteEvent.instrumentVolume;
+                            currentInstrumentPan = noteEvent.instrumentPan;
+                        }
+                        prevEventMidiTick = nextEventMidiTick;
+                        prevEventPart = nextEventPart;
+                    }
+                    const averagePitch = pitchSum / pitchCount;
+                    channel.octave = isNoiseChannel ? 0 : Math.max(0, Math.min(Config.scrollableOctaves, Math.round((averagePitch / 12) - 1.5)));
+                }
+                while (channel.bars.length < songTotalBars) {
+                    channel.bars.push(0);
+                }
+            }
+            function compactChannels(channels, maxLength) {
+                while (channels.length > maxLength) {
+                    let bestChannelIndexA = channels.length - 2;
+                    let bestChannelIndexB = channels.length - 1;
+                    let fewestConflicts = Number.MAX_VALUE;
+                    let fewestGaps = Number.MAX_VALUE;
+                    for (let channelIndexA = 0; channelIndexA < channels.length - 1; channelIndexA++) {
+                        for (let channelIndexB = channelIndexA + 1; channelIndexB < channels.length; channelIndexB++) {
+                            const channelA = channels[channelIndexA];
+                            const channelB = channels[channelIndexB];
+                            let conflicts = 0;
+                            let gaps = 0;
+                            for (let barIndex = 0; barIndex < channelA.bars.length && barIndex < channelB.bars.length; barIndex++) {
+                                if (channelA.bars[barIndex] != 0 && channelB.bars[barIndex] != 0)
+                                    conflicts++;
+                                if (channelA.bars[barIndex] == 0 && channelB.bars[barIndex] == 0)
+                                    gaps++;
+                            }
+                            if (conflicts <= fewestConflicts) {
+                                if (conflicts < fewestConflicts || gaps < fewestGaps) {
+                                    bestChannelIndexA = channelIndexA;
+                                    bestChannelIndexB = channelIndexB;
+                                    fewestConflicts = conflicts;
+                                    fewestGaps = gaps;
+                                }
+                            }
+                        }
+                    }
+                    const channelA = channels[bestChannelIndexA];
+                    const channelB = channels[bestChannelIndexB];
+                    const channelAInstrumentCount = channelA.instruments.length;
+                    const channelAPatternCount = channelA.patterns.length;
+                    for (const instrument of channelB.instruments) {
+                        channelA.instruments.push(instrument);
+                    }
+                    for (const pattern of channelB.patterns) {
+                        pattern.instrument += channelAInstrumentCount;
+                        channelA.patterns.push(pattern);
+                    }
+                    for (let barIndex = 0; barIndex < channelA.bars.length && barIndex < channelB.bars.length; barIndex++) {
+                        if (channelA.bars[barIndex] == 0 && channelB.bars[barIndex] != 0) {
+                            channelA.bars[barIndex] = channelB.bars[barIndex] + channelAPatternCount;
+                        }
+                    }
+                    channels.splice(bestChannelIndexB, 1);
+                }
+            }
+            compactChannels(pitchChannels, Config.pitchChannelCountMax);
+            compactChannels(noiseChannels, Config.noiseChannelCountMax);
+            class ChangeImportMidi extends ChangeGroup {
+                constructor(doc) {
+                    super();
+                    const song = doc.song;
+                    song.tempo = beatsPerMinute;
+                    song.beatsPerBar = beatsPerBar;
+                    song.key = key;
+                    song.scale = 11;
+                    song.reverb = 1;
+                    song.rhythm = 1;
+                    removeDuplicatePatterns(pitchChannels);
+                    removeDuplicatePatterns(noiseChannels);
+                    this.append(new ChangeReplacePatterns(doc, pitchChannels, noiseChannels));
+                    song.loopStart = 0;
+                    song.loopLength = song.barCount;
+                    this._didSomething();
+                    doc.notifier.changed();
+                }
+            }
+            this._doc.goBackToStart();
+            for (const channel of this._doc.song.channels)
+                channel.muted = false;
+            this._doc.prompt = null;
+            this._doc.record(new ChangeImportMidi(this._doc), true, true);
+        }
+    }
+
+    const versionPrefix = "songVersion: ";
+    const maximumSongCount = 8;
+    const maximumWorkPerVersion = 3 * 60 * 1000;
+    const minimumWorkPerSpan = 1 * 60 * 1000;
+    function keyIsVersion(key) {
+        return key.indexOf(versionPrefix) == 0;
+    }
+    function keyToVersion(key) {
+        return JSON.parse(key.substring(versionPrefix.length));
+    }
+    function versionToKey(version) {
+        return versionPrefix + JSON.stringify(version);
+    }
+    function generateUid() {
+        return ((Math.random() * (-1 >>> 0)) >>> 0).toString(32);
+    }
+    function compareSongs(a, b) {
+        return b.versions[0].time - a.versions[0].time;
+    }
+    function compareVersions(a, b) {
+        return b.time - a.time;
+    }
+    class SongRecovery {
+        constructor() {
+            this._song = new Song();
+        }
+        static getAllRecoveredSongs() {
+            const songs = [];
+            const songsByUid = {};
+            for (let i = 0; i < localStorage.length; i++) {
+                const itemKey = localStorage.key(i);
+                if (keyIsVersion(itemKey)) {
+                    const version = keyToVersion(itemKey);
+                    let song = songsByUid[version.uid];
+                    if (song == undefined) {
+                        song = { versions: [] };
+                        songsByUid[version.uid] = song;
+                        songs.push(song);
+                    }
+                    song.versions.push(version);
+                }
+            }
+            for (const song of songs) {
+                song.versions.sort(compareVersions);
+            }
+            songs.sort(compareSongs);
+            return songs;
+        }
+        saveVersion(uid, songData) {
+            const newTime = Math.round(Date.now());
+            clearTimeout(this._saveVersionTimeoutHandle);
+            this._saveVersionTimeoutHandle = setTimeout(() => {
+                try {
+                    this._song.fromBase64String(songData);
+                }
+                catch (error) {
+                    window.alert("Whoops, the song data appears to have been corrupted! Please try to recover the last working version of the song from the \"Recover Recent Song...\" option in BeepBox's \"File\" menu.");
+                    return;
+                }
+                const songs = SongRecovery.getAllRecoveredSongs();
+                let currentSong = null;
+                for (const song of songs) {
+                    if (song.versions[0].uid == uid) {
+                        currentSong = song;
+                    }
+                }
+                if (currentSong == null) {
+                    currentSong = { versions: [] };
+                    songs.unshift(currentSong);
+                }
+                let versions = currentSong.versions;
+                let newWork = 1000;
+                if (versions.length > 0) {
+                    const mostRecentTime = versions[0].time;
+                    const mostRecentWork = versions[0].work;
+                    newWork = mostRecentWork + Math.min(maximumWorkPerVersion, newTime - mostRecentTime);
+                }
+                const newVersion = { uid: uid, time: newTime, work: newWork };
+                const newKey = versionToKey(newVersion);
+                versions.unshift(newVersion);
+                localStorage.setItem(newKey, songData);
+                let minSpan = minimumWorkPerSpan;
+                const spanMult = Math.pow(2, 1 / 2);
+                for (var i = 1; i < versions.length; i++) {
+                    const currentWork = versions[i].work;
+                    const olderWork = (i == versions.length - 1) ? 0.0 : versions[i + 1].work;
+                    if (currentWork - olderWork < minSpan) {
+                        let indexToDiscard = i;
+                        if (i < versions.length - 1) {
+                            const currentTime = versions[i].time;
+                            const newerTime = versions[i - 1].time;
+                            const olderTime = versions[i + 1].time;
+                            if ((currentTime - olderTime) < 0.5 * (newerTime - currentTime)) {
+                                indexToDiscard = i + 1;
+                            }
+                        }
+                        localStorage.removeItem(versionToKey(versions[indexToDiscard]));
+                        break;
+                    }
+                    minSpan *= spanMult;
+                }
+                while (songs.length > maximumSongCount) {
+                    let leastImportantSong = null;
+                    let leastImportance = Number.POSITIVE_INFINITY;
+                    for (let i = Math.round(maximumSongCount / 2); i < songs.length; i++) {
+                        const song = songs[i];
+                        const timePassed = newTime - song.versions[0].time;
+                        const timeScale = 1.0 / ((timePassed / (12 * 60 * 60 * 1000)) + 1.0);
+                        const adjustedWork = song.versions[0].work + 5 * 60 * 1000;
+                        const weight = adjustedWork * timeScale;
+                        if (leastImportance > weight) {
+                            leastImportance = weight;
+                            leastImportantSong = song;
+                        }
+                    }
+                    for (const version of leastImportantSong.versions) {
+                        localStorage.removeItem(versionToKey(version));
+                    }
+                    songs.splice(songs.indexOf(leastImportantSong), 1);
+                }
+            }, 750);
+        }
+    }
+
+    const { button: button$7, div: div$7, h2: h2$7, p: p$2, select: select$4, option: option$4, iframe } = HTML;
+    class SongRecoveryPrompt {
+        constructor(_doc) {
+            this._doc = _doc;
+            this._songContainer = div$7();
+            this._cancelButton = button$7({ class: "cancelButton" });
+            this.container = div$7({ class: "prompt", style: "width: 300px;" }, h2$7("Song Recovery"), div$7({ style: "max-height: 385px; overflow-y: auto;" }, p$2("This is a TEMPORARY list of songs you have recently modified. Please keep your own backups of songs you care about!"), this._songContainer, p$2("(If \"Display Song Data in URL\" is enabled in your preferences, then you may also be able to find song versions in your browser history. However, song recovery won't work if you were browsing in private/incognito mode.)")), this._cancelButton);
+            this._close = () => {
+                this._doc.undo();
+            };
+            this.cleanUp = () => {
+                this._cancelButton.removeEventListener("click", this._close);
+            };
+            this._cancelButton.addEventListener("click", this._close);
+            const songs = SongRecovery.getAllRecoveredSongs();
+            if (songs.length == 0) {
+                this._songContainer.appendChild(p$2("There are no recovered songs available yet. Try making a song!"));
+            }
+            for (const song of songs) {
+                const versionMenu = select$4({ style: "width: 100%;" });
+                for (const version of song.versions) {
+                    versionMenu.appendChild(option$4({ value: version.time }, new Date(version.time).toLocaleString()));
+                }
+                const player = iframe({ style: "width: 100%; height: 60px; border: none; display: block;" });
+                player.src = "player/#song=" + window.localStorage.getItem(versionToKey(song.versions[0]));
+                const container = div$7({ style: "margin: 4px 0;" }, div$7({ class: "selectContainer", style: "width: 100%; margin: 2px 0;" }, versionMenu), player);
+                this._songContainer.appendChild(container);
+                versionMenu.addEventListener("change", () => {
+                    const version = song.versions[versionMenu.selectedIndex];
+                    player.contentWindow.location.replace("player/#song=" + window.localStorage.getItem(versionToKey(version)));
+                    player.contentWindow.dispatchEvent(new Event("hashchange"));
+                });
+            }
+        }
+    }
+
+    const { button: button$8, div: div$8, input: input$6, select: select$5, span: span$3, optgroup, option: option$5 } = HTML;
+    function buildOptions(menu, items) {
+        for (let index = 0; index < items.length; index++) {
+            menu.appendChild(option$5({ value: index }, items[index]));
+        }
+        return menu;
+    }
+    function buildPresetOptions(isNoise) {
+        const menu = select$5();
+        menu.appendChild(optgroup({ label: "Edit" }, option$5({ value: "copyInstrument" }, "Copy Instrument"), option$5({ value: "pasteInstrument" }, "Paste Instrument"), option$5({ value: "randomPreset" }, "Random Preset"), option$5({ value: "randomGenerated" }, "Random Generated")));
+        const customTypeGroup = optgroup({ label: EditorConfig.presetCategories[0].name });
+        if (isNoise) {
+            customTypeGroup.appendChild(option$5({ value: 2 }, EditorConfig.valueToPreset(2).name));
+            customTypeGroup.appendChild(option$5({ value: 3 }, EditorConfig.valueToPreset(3).name));
+            customTypeGroup.appendChild(option$5({ value: 4 }, EditorConfig.valueToPreset(4).name));
+        }
+        else {
+            customTypeGroup.appendChild(option$5({ value: 0 }, EditorConfig.valueToPreset(0).name));
+            customTypeGroup.appendChild(option$5({ value: 6 }, EditorConfig.valueToPreset(6).name));
+            customTypeGroup.appendChild(option$5({ value: 5 }, EditorConfig.valueToPreset(5).name));
+            customTypeGroup.appendChild(option$5({ value: 3 }, EditorConfig.valueToPreset(3).name));
+            customTypeGroup.appendChild(option$5({ value: 1 }, EditorConfig.valueToPreset(1).name));
+        }
+        menu.appendChild(customTypeGroup);
+        for (let categoryIndex = 1; categoryIndex < EditorConfig.presetCategories.length; categoryIndex++) {
+            const category = EditorConfig.presetCategories[categoryIndex];
+            const group = optgroup({ label: category.name });
+            let foundAny = false;
+            for (let presetIndex = 0; presetIndex < category.presets.length; presetIndex++) {
+                const preset = category.presets[presetIndex];
+                if ((preset.isNoise == true) == isNoise) {
+                    group.appendChild(option$5({ value: (categoryIndex << 6) + presetIndex }, preset.name));
+                    foundAny = true;
+                }
+            }
+            if (foundAny)
+                menu.appendChild(group);
+        }
+        return menu;
+    }
+    function setSelectedValue(menu, value) {
+        const stringValue = value.toString();
+        if (menu.value != stringValue)
+            menu.value = stringValue;
+    }
+    class Slider {
+        constructor(input, _doc, _getChange) {
+            this.input = input;
+            this._doc = _doc;
+            this._getChange = _getChange;
+            this._change = null;
+            this._value = 0;
+            this._oldValue = 0;
+            this._whenInput = () => {
+                const continuingProspectiveChange = this._doc.lastChangeWas(this._change);
+                if (!continuingProspectiveChange)
+                    this._oldValue = this._value;
+                this._change = this._getChange(this._oldValue, parseInt(this.input.value));
+                this._doc.setProspectiveChange(this._change);
+            };
+            this._whenChange = () => {
+                this._doc.record(this._change);
+                this._change = null;
+            };
+            input.addEventListener("input", this._whenInput);
+            input.addEventListener("change", this._whenChange);
+        }
+        updateValue(value) {
+            this._value = value;
+            this.input.value = String(value);
+        }
+    }
+    class SongEditor {
+        constructor(_doc) {
+            this._doc = _doc;
+            this.prompt = null;
+            this._patternEditorPrev = new PatternEditor(this._doc, false, -1);
+            this._patternEditor = new PatternEditor(this._doc, true, 0);
+            this._patternEditorNext = new PatternEditor(this._doc, false, 1);
+            this._muteEditor = new MuteEditor(this._doc);
+            this._trackEditor = new TrackEditor(this._doc);
+            this._loopEditor = new LoopEditor(this._doc);
+            this._octaveScrollBar = new OctaveScrollBar(this._doc);
+            this._piano = new Piano(this._doc);
+            this._playButton = button$8({ style: "width: 80px;", type: "button" });
+            this._prevBarButton = button$8({ class: "prevBarButton", style: "width: 40px;", type: "button", title: "Previous Bar (left bracket)" });
+            this._nextBarButton = button$8({ class: "nextBarButton", style: "width: 40px;", type: "button", title: "Next Bar (right bracket)" });
+            this._volumeSlider = input$6({ title: "main volume", style: "width: 5em; flex-grow: 1; margin: 0;", type: "range", min: "0", max: "75", value: "50", step: "1" });
+            this._fileMenu = select$5({ style: "width: 100%;" }, option$5({ selected: true, disabled: true, hidden: false }, "File"), option$5({ value: "new" }, "+ New Blank Song"), option$5({ value: "import" }, "↑ Import Song..."), option$5({ value: "export" }, "↓ Export Song..."), option$5({ value: "copyUrl" }, "⎘ Copy Song URL"), option$5({ value: "shareUrl" }, "⤳ Share Song URL"), option$5({ value: "shortenUrl" }, "… Shorten Song URL"), option$5({ value: "viewPlayer" }, "▶ View in Song Player"), option$5({ value: "copyEmbed" }, "⎘ Copy HTML Embed Code"), option$5({ value: "songRecovery" }, "⚠ Recover Recent Song..."));
+            this._editMenu = select$5({ style: "width: 100%;" }, option$5({ selected: true, disabled: true, hidden: false }, "Edit"), option$5({ value: "undo" }, "Undo (Z)"), option$5({ value: "redo" }, "Redo (Y)"), option$5({ value: "copy" }, "Copy Pattern (C)"), option$5({ value: "pasteNotes" }, "Paste Pattern Notes (V)"), option$5({ value: "pasteNumbers" }, "Paste Pattern Numbers (⇧V)"), option$5({ value: "insertBars" }, "Insert Bar After Selection (⏎)"), option$5({ value: "deleteBars" }, "Delete Selected Bar (⌫)"), option$5({ value: "selectAll" }, "Select All (A)"), option$5({ value: "selectChannel" }, "Select Channel (⇧A)"), option$5({ value: "duplicatePatterns" }, "Duplicate Reused Patterns (D)"), option$5({ value: "transposeUp" }, "Move Notes Up (+)"), option$5({ value: "transposeDown" }, "Move Notes Down (-)"), option$5({ value: "moveNotesSideways" }, "Move All Notes Sideways..."), option$5({ value: "beatsPerBar" }, "Change Beats Per Bar..."), option$5({ value: "barCount" }, "Change Song Length..."), option$5({ value: "channelSettings" }, "Channel Settings..."));
+            this._optionsMenu = select$5({ style: "width: 100%;" }, option$5({ selected: true, disabled: true, hidden: false }, "Preferences"), option$5({ value: "autoPlay" }, "Auto Play On Load"), option$5({ value: "autoFollow" }, "Auto Follow Track"), option$5({ value: "enableNotePreview" }, "Preview Added Notes"), option$5({ value: "showLetters" }, "Show Piano Keys"), option$5({ value: "showFifth" }, 'Highlight "Fifth" Notes'), option$5({ value: "showChannels" }, "Show All Channels"), option$5({ value: "showScrollBar" }, "Octave Scroll Bar"), option$5({ value: "alwaysShowSettings" }, "Customize All Instruments"), option$5({ value: "enableChannelMuting" }, "Enable Channel Muting"), option$5({ value: "displayBrowserUrl" }, "Display Song Data in URL"), option$5({ value: "fullScreen" }, "Full-Screen Layout"), option$5({ value: "colorTheme" }, "Light Theme"));
+            this._scaleSelect = buildOptions(select$5(), Config.scales.map(scale => scale.name));
+            this._keySelect = buildOptions(select$5(), Config.keys.map(key => key.name).reverse());
+            this._tempoSlider = new Slider(input$6({ style: "margin: 0; width: 4em; flex-grow: 1; vertical-align: middle;", type: "range", min: "0", max: "14", value: "7", step: "1" }), this._doc, (oldValue, newValue) => new ChangeTempo(this._doc, oldValue, Math.round(120.0 * Math.pow(2.0, (-4.0 + newValue) / 9.0))));
+            this._tempoStepper = input$6({ style: "width: 3em; margin-left: 0.4em; vertical-align: middle;", type: "number", step: "1" });
+            this._reverbSlider = new Slider(input$6({ style: "margin: 0;", type: "range", min: "0", max: Config.reverbRange - 1, value: "0", step: "1" }), this._doc, (oldValue, newValue) => new ChangeReverb(this._doc, oldValue, newValue));
+            this._rhythmSelect = buildOptions(select$5(), Config.rhythms.map(rhythm => rhythm.name));
+            this._pitchedPresetSelect = buildPresetOptions(false);
+            this._drumPresetSelect = buildPresetOptions(true);
+            this._algorithmSelect = buildOptions(select$5(), Config.algorithms.map(algorithm => algorithm.name));
+            this._algorithmSelectRow = div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("algorithm") }, "Algorithm: "), div$8({ class: "selectContainer" }, this._algorithmSelect));
+            this._instrumentSelect = select$5();
+            this._instrumentSelectRow = div$8({ class: "selectRow", style: "display: none;" }, span$3({ class: "tip", onclick: () => this._openPrompt("instrumentIndex") }, "Instrument: "), div$8({ class: "selectContainer" }, this._instrumentSelect));
+            this._instrumentVolumeSlider = new Slider(input$6({ style: "margin: 0;", type: "range", min: -(Config.volumeRange - 1), max: "0", value: "0", step: "1" }), this._doc, (oldValue, newValue) => new ChangeVolume(this._doc, oldValue, -newValue));
+            this._instrumentVolumeSliderRow = div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("instrumentVolume") }, "Volume: "), this._instrumentVolumeSlider.input);
+            this._panSlider = new Slider(input$6({ style: "margin: 0;", type: "range", min: "0", max: Config.panMax, value: Config.panCenter, step: "1" }), this._doc, (oldValue, newValue) => new ChangePan(this._doc, oldValue, newValue));
+            this._panSliderRow = div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("pan") }, "Panning: "), this._panSlider.input);
+            this._chipWaveSelect = buildOptions(select$5(), Config.chipWaves.map(wave => wave.name));
+            this._chipNoiseSelect = buildOptions(select$5(), Config.chipNoises.map(wave => wave.name));
+            this._chipWaveSelectRow = div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("chipWave") }, "Wave: "), div$8({ class: "selectContainer" }, this._chipWaveSelect));
+            this._chipNoiseSelectRow = div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("chipNoise") }, "Noise: "), div$8({ class: "selectContainer" }, this._chipNoiseSelect));
+            this._transitionSelect = buildOptions(select$5(), Config.transitions.map(transition => transition.name));
+            this._transitionRow = div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("transition") }, "Transition:"), div$8({ class: "selectContainer" }, this._transitionSelect));
+            this._effectsSelect = buildOptions(select$5(), Config.effectsNames);
+            this._filterCutoffSlider = new Slider(input$6({ style: "margin: 0;", type: "range", min: "0", max: Config.filterCutoffRange - 1, value: "6", step: "1" }), this._doc, (oldValue, newValue) => new ChangeFilterCutoff(this._doc, oldValue, newValue));
+            this._filterCutoffRow = div$8({ class: "selectRow", title: "Low-pass Filter Cutoff Frequency" }, span$3({ class: "tip", onclick: () => this._openPrompt("filterCutoff") }, "Filter Cut:"), this._filterCutoffSlider.input);
+            this._filterResonanceSlider = new Slider(input$6({ style: "margin: 0;", type: "range", min: "0", max: Config.filterResonanceRange - 1, value: "6", step: "1" }), this._doc, (oldValue, newValue) => new ChangeFilterResonance(this._doc, oldValue, newValue));
+            this._filterResonanceRow = div$8({ class: "selectRow", title: "Low-pass Filter Peak Resonance" }, span$3({ class: "tip", onclick: () => this._openPrompt("filterResonance") }, "Filter Peak:"), this._filterResonanceSlider.input);
+            this._filterEnvelopeSelect = buildOptions(select$5(), Config.envelopes.map(envelope => envelope.name));
+            this._filterEnvelopeRow = div$8({ class: "selectRow", title: "Low-pass Filter Envelope" }, span$3({ class: "tip", onclick: () => this._openPrompt("filterEnvelope") }, "Filter Env:"), div$8({ class: "selectContainer" }, this._filterEnvelopeSelect));
+            this._pulseEnvelopeSelect = buildOptions(select$5(), Config.envelopes.map(envelope => envelope.name));
+            this._pulseEnvelopeRow = div$8({ class: "selectRow", title: "Pulse Width Modulator Envelope" }, span$3({ class: "tip", onclick: () => this._openPrompt("pulseEnvelope") }, "Pulse Env:"), div$8({ class: "selectContainer" }, this._pulseEnvelopeSelect));
+            this._pulseWidthSlider = new Slider(input$6({ style: "margin: 0;", type: "range", min: "0", max: Config.pulseWidthRange - 1, value: "0", step: "1" }), this._doc, (oldValue, newValue) => new ChangePulseWidth(this._doc, oldValue, newValue));
+            this._pulseWidthRow = div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("pulseWidth") }, "Pulse Width:"), this._pulseWidthSlider.input);
+            this._intervalSelect = buildOptions(select$5(), Config.intervals.map(interval => interval.name));
+            this._intervalSelectRow = div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("interval") }, "Interval:"), div$8({ class: "selectContainer" }, this._intervalSelect));
+            this._chordSelect = buildOptions(select$5(), Config.chords.map(chord => chord.name));
+            this._chordSelectRow = div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("chords") }, "Chords:"), div$8({ class: "selectContainer" }, this._chordSelect));
+            this._vibratoSelect = buildOptions(select$5(), Config.vibratos.map(vibrato => vibrato.name));
+            this._vibratoSelectRow = div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("vibrato") }, "Vibrato:"), div$8({ class: "selectContainer" }, this._vibratoSelect));
+            this._phaseModGroup = div$8({ class: "editor-controls" });
+            this._feedbackTypeSelect = buildOptions(select$5(), Config.feedbacks.map(feedback => feedback.name));
+            this._feedbackRow1 = div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("feedbackType") }, "Feedback:"), div$8({ class: "selectContainer" }, this._feedbackTypeSelect));
+            this._spectrumEditor = new SpectrumEditor(this._doc, null);
+            this._spectrumRow = div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("spectrum") }, "Spectrum:"), this._spectrumEditor.container);
+            this._harmonicsEditor = new HarmonicsEditor(this._doc);
+            this._harmonicsRow = div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("harmonics") }, "Harmonics:"), this._harmonicsEditor.container);
+            this._drumsetGroup = div$8({ class: "editor-controls" });
+            this._feedbackAmplitudeSlider = new Slider(input$6({ style: "margin: 0; width: 4em;", type: "range", min: "0", max: Config.operatorAmplitudeMax, value: "0", step: "1", title: "Feedback Amplitude" }), this._doc, (oldValue, newValue) => new ChangeFeedbackAmplitude(this._doc, oldValue, newValue));
+            this._feedbackEnvelopeSelect = buildOptions(select$5({ style: "width: 100%;", title: "Feedback Envelope" }), Config.envelopes.map(envelope => envelope.name));
+            this._feedbackRow2 = div$8({ class: "operatorRow" }, div$8({ style: "margin-right: .1em; visibility: hidden;" }, 1 + "."), div$8({ style: "width: 3em; margin-right: .3em;" }), this._feedbackAmplitudeSlider.input, div$8({ class: "selectContainer", style: "width: 5em; margin-left: .3em;" }, this._feedbackEnvelopeSelect));
+            this._customizeInstrumentButton = button$8({ type: "button", class: "customize-instrument" }, "Customize Instrument");
+            this._customInstrumentSettingsGroup = div$8({ class: "editor-controls" }, this._filterCutoffRow, this._filterResonanceRow, this._filterEnvelopeRow, this._transitionRow, div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("effects") }, "Effects:"), div$8({ class: "selectContainer" }, this._effectsSelect)), this._chordSelectRow, this._vibratoSelectRow, this._intervalSelectRow, this._chipWaveSelectRow, this._chipNoiseSelectRow, this._algorithmSelectRow, this._phaseModGroup, this._feedbackRow1, this._feedbackRow2, this._spectrumRow, this._harmonicsRow, this._drumsetGroup, this._pulseEnvelopeRow, this._pulseWidthRow);
+            this._instrumentSettingsGroup = div$8({ class: "editor-controls" }, div$8({ style: `margin: 3px 0; text-align: center; color: ${ColorConfig.secondaryText};` }, "Instrument Settings"), this._instrumentSelectRow, this._instrumentVolumeSliderRow, this._panSliderRow, div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("instrumentType") }, "Type: "), div$8({ class: "selectContainer" }, this._pitchedPresetSelect, this._drumPresetSelect)), this._customizeInstrumentButton, this._customInstrumentSettingsGroup);
+            this._promptContainer = div$8({ class: "promptContainer", style: "display: none;" });
+            this._patternEditorRow = div$8({ style: "flex: 1; height: 100%; display: flex; overflow: hidden; justify-content: center;" }, this._patternEditorPrev.container, this._patternEditor.container, this._patternEditorNext.container);
+            this._patternArea = div$8({ class: "pattern-area" }, this._piano.container, this._patternEditorRow, this._octaveScrollBar.container);
+            this._trackContainer = div$8({ class: "trackContainer" }, this._trackEditor.container, this._loopEditor.container);
+            this._trackAndMuteContainer = div$8({ class: "trackAndMuteContainer" }, this._muteEditor.container, this._trackContainer);
+            this._barScrollBar = new BarScrollBar(this._doc, this._trackContainer);
+            this._trackArea = div$8({ class: "track-area" }, this._trackAndMuteContainer, this._barScrollBar.container);
+            this._settingsArea = div$8({ class: "settings-area noSelection" }, div$8({ class: "version-area" }, div$8({ style: `text-align: center; margin: 3px 0; color: ${ColorConfig.secondaryText};` }, EditorConfig.versionDisplayName)), div$8({ class: "play-pause-area" }, div$8({ class: "playback-bar-controls" }, this._playButton, this._prevBarButton, this._nextBarButton), div$8({ class: "playback-volume-controls" }, span$3({ class: "volume-speaker" }), this._volumeSlider)), div$8({ class: "menu-area" }, div$8({ class: "selectContainer menu file" }, this._fileMenu), div$8({ class: "selectContainer menu edit" }, this._editMenu), div$8({ class: "selectContainer menu preferences" }, this._optionsMenu)), div$8({ class: "song-settings-area" }, div$8({ class: "editor-controls" }, div$8({ style: `margin: 3px 0; text-align: center; color: ${ColorConfig.secondaryText};` }, "Song Settings"), div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("scale") }, "Scale: "), div$8({ class: "selectContainer" }, this._scaleSelect)), div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("key") }, "Key: "), div$8({ class: "selectContainer" }, this._keySelect)), div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("tempo") }, "Tempo: "), span$3({ style: "display: flex;" }, this._tempoSlider.input, this._tempoStepper)), div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("reverb") }, "Reverb: "), this._reverbSlider.input), div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("rhythm") }, "Rhythm: "), div$8({ class: "selectContainer" }, this._rhythmSelect)))), div$8({ class: "instrument-settings-area" }, this._instrumentSettingsGroup));
+            this.mainLayer = div$8({ class: "beepboxEditor", tabIndex: "0" }, this._patternArea, this._trackArea, this._settingsArea, this._promptContainer);
+            this._wasPlaying = false;
+            this._currentPromptName = null;
+            this._operatorRows = [];
+            this._operatorAmplitudeSliders = [];
+            this._operatorEnvelopeSelects = [];
+            this._operatorFrequencySelects = [];
+            this._drumsetSpectrumEditors = [];
+            this._drumsetEnvelopeSelects = [];
+            this._refocusStage = () => {
+                this.mainLayer.focus({ preventScroll: true });
+            };
+            this.whenUpdated = () => {
+                this._muteEditor.container.style.display = this._doc.enableChannelMuting ? "" : "none";
+                const trackBounds = this._trackContainer.getBoundingClientRect();
+                this._doc.trackVisibleBars = Math.floor((trackBounds.right - trackBounds.left) / this._doc.getBarWidth());
+                this._barScrollBar.render();
+                this._muteEditor.render();
+                this._trackEditor.render();
+                this._piano.container.style.display = this._doc.showLetters ? "" : "none";
+                this._octaveScrollBar.container.style.display = this._doc.showScrollBar ? "" : "none";
+                this._barScrollBar.container.style.display = this._doc.song.barCount > this._doc.trackVisibleBars ? "" : "none";
+                if (this._doc.getFullScreen()) {
+                    const semitoneHeight = this._patternEditorRow.clientHeight / Config.windowPitchCount;
+                    const targetBeatWidth = semitoneHeight * 5;
+                    const minBeatWidth = this._patternEditorRow.clientWidth / (this._doc.song.beatsPerBar * 3);
+                    const maxBeatWidth = this._patternEditorRow.clientWidth / (this._doc.song.beatsPerBar + 2);
+                    const beatWidth = Math.max(minBeatWidth, Math.min(maxBeatWidth, targetBeatWidth));
+                    const patternEditorWidth = beatWidth * this._doc.song.beatsPerBar;
+                    this._patternEditorPrev.container.style.width = patternEditorWidth + "px";
+                    this._patternEditor.container.style.width = patternEditorWidth + "px";
+                    this._patternEditorNext.container.style.width = patternEditorWidth + "px";
+                    this._patternEditorPrev.container.style.flexShrink = "0";
+                    this._patternEditor.container.style.flexShrink = "0";
+                    this._patternEditorNext.container.style.flexShrink = "0";
+                    this._patternEditorPrev.container.style.display = "";
+                    this._patternEditorNext.container.style.display = "";
+                    this._patternEditorPrev.render();
+                    this._patternEditorNext.render();
+                }
+                else {
+                    this._patternEditor.container.style.width = "";
+                    this._patternEditor.container.style.flexShrink = "";
+                    this._patternEditorPrev.container.style.display = "none";
+                    this._patternEditorNext.container.style.display = "none";
+                }
+                this._patternEditor.render();
+                const optionCommands = [
+                    (this._doc.autoPlay ? "✓ " : "") + "Auto Play On Load",
+                    (this._doc.autoFollow ? "✓ " : "") + "Auto Follow Track",
+                    (this._doc.enableNotePreview ? "✓ " : "") + "Preview Added Notes",
+                    (this._doc.showLetters ? "✓ " : "") + "Show Piano Keys",
+                    (this._doc.showFifth ? "✓ " : "") + 'Highlight "Fifth" Notes',
+                    (this._doc.showChannels ? "✓ " : "") + "Show All Channels",
+                    (this._doc.showScrollBar ? "✓ " : "") + "Octave Scroll Bar",
+                    (this._doc.alwaysShowSettings ? "✓ " : "") + "Customize All Instruments",
+                    (this._doc.enableChannelMuting ? "✓ " : "") + "Enable Channel Muting",
+                    (this._doc.displayBrowserUrl ? "✓ " : "") + "Display Song Data in URL",
+                    (this._doc.fullScreen ? "✓ " : "") + "Full-Screen Layout",
+                    (this._doc.colorTheme == "light classic" ? "✓ " : "") + "Light Theme",
+                ];
+                for (let i = 0; i < optionCommands.length; i++) {
+                    const option = this._optionsMenu.children[i + 1];
+                    if (option.innerText != optionCommands[i])
+                        option.innerText = optionCommands[i];
+                }
+                const channel = this._doc.song.channels[this._doc.channel];
+                const pattern = this._doc.getCurrentPattern();
+                const instrumentIndex = this._doc.getCurrentInstrument();
+                const instrument = channel.instruments[instrumentIndex];
+                const wasActive = this.mainLayer.contains(document.activeElement);
+                const activeElement = document.activeElement;
+                setSelectedValue(this._scaleSelect, this._doc.song.scale);
+                this._scaleSelect.title = Config.scales[this._doc.song.scale].realName;
+                setSelectedValue(this._keySelect, Config.keys.length - 1 - this._doc.song.key);
+                this._tempoSlider.updateValue(Math.max(0, Math.min(28, Math.round(4.0 + 9.0 * Math.log(this._doc.song.tempo / 120.0) / Math.LN2))));
+                this._tempoStepper.value = this._doc.song.tempo.toString();
+                this._reverbSlider.updateValue(this._doc.song.reverb);
+                setSelectedValue(this._rhythmSelect, this._doc.song.rhythm);
+                if (this._doc.song.getChannelIsNoise(this._doc.channel)) {
+                    this._pitchedPresetSelect.style.display = "none";
+                    this._drumPresetSelect.style.display = "";
+                    setSelectedValue(this._drumPresetSelect, instrument.preset);
+                }
+                else {
+                    this._pitchedPresetSelect.style.display = "";
+                    this._drumPresetSelect.style.display = "none";
+                    setSelectedValue(this._pitchedPresetSelect, instrument.preset);
+                }
+                if (!this._doc.alwaysShowSettings && instrument.preset != instrument.type) {
+                    this._customizeInstrumentButton.style.display = "";
+                    this._customInstrumentSettingsGroup.style.display = "none";
+                }
+                else {
+                    this._customizeInstrumentButton.style.display = "none";
+                    this._customInstrumentSettingsGroup.style.display = "";
+                    if (instrument.type == 2) {
+                        this._chipNoiseSelectRow.style.display = "";
+                        setSelectedValue(this._chipNoiseSelect, instrument.chipNoise);
+                    }
+                    else {
+                        this._chipNoiseSelectRow.style.display = "none";
+                    }
+                    if (instrument.type == 3) {
+                        this._spectrumRow.style.display = "";
+                        this._spectrumEditor.render();
+                    }
+                    else {
+                        this._spectrumRow.style.display = "none";
+                    }
+                    if (instrument.type == 5) {
+                        this._harmonicsRow.style.display = "";
+                        this._harmonicsEditor.render();
+                    }
+                    else {
+                        this._harmonicsRow.style.display = "none";
+                    }
+                    if (instrument.type == 4) {
+                        this._drumsetGroup.style.display = "";
+                        this._transitionRow.style.display = "none";
+                        this._chordSelectRow.style.display = "none";
+                        this._filterCutoffRow.style.display = "none";
+                        this._filterResonanceRow.style.display = "none";
+                        this._filterEnvelopeRow.style.display = "none";
+                        for (let i = 0; i < Config.drumCount; i++) {
+                            setSelectedValue(this._drumsetEnvelopeSelects[i], instrument.drumsetEnvelopes[i]);
+                            this._drumsetSpectrumEditors[i].render();
+                        }
+                    }
+                    else {
+                        this._drumsetGroup.style.display = "none";
+                        this._transitionRow.style.display = "";
+                        this._chordSelectRow.style.display = "";
+                        this._filterCutoffRow.style.display = "";
+                        this._filterResonanceRow.style.display = "";
+                        this._filterEnvelopeRow.style.display = "";
+                    }
+                    if (instrument.type == 0) {
+                        this._chipWaveSelectRow.style.display = "";
+                        setSelectedValue(this._chipWaveSelect, instrument.chipWave);
+                    }
+                    else {
+                        this._chipWaveSelectRow.style.display = "none";
+                    }
+                    if (instrument.type == 1) {
+                        this._algorithmSelectRow.style.display = "";
+                        this._phaseModGroup.style.display = "";
+                        this._feedbackRow1.style.display = "";
+                        this._feedbackRow2.style.display = "";
+                        setSelectedValue(this._algorithmSelect, instrument.algorithm);
+                        setSelectedValue(this._feedbackTypeSelect, instrument.feedbackType);
+                        this._feedbackAmplitudeSlider.updateValue(instrument.feedbackAmplitude);
+                        setSelectedValue(this._feedbackEnvelopeSelect, instrument.feedbackEnvelope);
+                        this._feedbackEnvelopeSelect.parentElement.style.color = (instrument.feedbackAmplitude > 0) ? "" : ColorConfig.secondaryText;
+                        for (let i = 0; i < Config.operatorCount; i++) {
+                            const isCarrier = (i < Config.algorithms[instrument.algorithm].carrierCount);
+                            this._operatorRows[i].style.color = isCarrier ? ColorConfig.primaryText : "";
+                            setSelectedValue(this._operatorFrequencySelects[i], instrument.operators[i].frequency);
+                            this._operatorAmplitudeSliders[i].updateValue(instrument.operators[i].amplitude);
+                            setSelectedValue(this._operatorEnvelopeSelects[i], instrument.operators[i].envelope);
+                            const operatorName = (isCarrier ? "Voice " : "Modulator ") + (i + 1);
+                            this._operatorFrequencySelects[i].title = operatorName + " Frequency";
+                            this._operatorAmplitudeSliders[i].input.title = operatorName + (isCarrier ? " Volume" : " Amplitude");
+                            this._operatorEnvelopeSelects[i].title = operatorName + " Envelope";
+                            this._operatorEnvelopeSelects[i].parentElement.style.color = (instrument.operators[i].amplitude > 0) ? "" : ColorConfig.secondaryText;
+                        }
+                    }
+                    else {
+                        this._algorithmSelectRow.style.display = "none";
+                        this._phaseModGroup.style.display = "none";
+                        this._feedbackRow1.style.display = "none";
+                        this._feedbackRow2.style.display = "none";
+                    }
+                    if (instrument.type == 6) {
+         
