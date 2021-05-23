@@ -1199,7 +1199,7 @@ var beepbox = (function (exports) {
 	grid-row-gap: 6px;
 	position: relative;
 	touch-action: manipulation;
-	cursor: default;
+	cursor: url('WOAH.png'), auto;
 	font-size: small;
 	overflow: hidden;
 	color: ${ColorConfig.primaryText};
@@ -1246,7 +1246,7 @@ var beepbox = (function (exports) {
 .beepboxEditor .instrument-settings-area{ grid-area: instrument-settings-area; }
 
 .beepboxEditor .tip {
-	cursor: help;
+	cursor: url('WOAH.png'), auto;
 }
 
 .beepboxEditor .tip:hover {
@@ -1517,7 +1517,7 @@ var beepbox = (function (exports) {
 	background: ${ColorConfig.uiWidgetBackground};
 	color: inherit;
 	font-size: inherit;
-	cursor: pointer;
+	cursor: url('WOAH.png'), auto;
 	font-family: inherit;
 	font-weight: inherit;
 
@@ -1556,7 +1556,7 @@ var beepbox = (function (exports) {
 	font-size: inherit;
 	font-family: inherit;
 	font-weight: inherit;
-	cursor: pointer;
+	cursor: url('WOAH.png'), auto;
 }
 .beepboxEditor button:focus {
 	background: ${ColorConfig.uiWidgetFocus};
@@ -1814,7 +1814,7 @@ var beepbox = (function (exports) {
 	height: 2em;
 	font-size: inherit;
 	margin: 0;
-	cursor: pointer;
+	cursor: url('WOAH.png'), auto;
 	background-color: ${ColorConfig.editorBackground};
 	touch-action: pan-y;
 }
@@ -1824,7 +1824,7 @@ var beepbox = (function (exports) {
 .beepboxEditor input[type=range]::-webkit-slider-runnable-track {
 	width: 100%;
 	height: 0.5em;
-	cursor: pointer;
+	cursor: url('WOAH.png'), auto;
 	background: ${ColorConfig.uiWidgetBackground};
 }
 .beepboxEditor input[type=range]::-webkit-slider-thumb {
@@ -1832,7 +1832,7 @@ var beepbox = (function (exports) {
 	width: 0.5em;
 	border-radius: 0.25em;
 	background: currentColor;
-	cursor: pointer;
+	cursor: url('WOAH.png'), auto;
 	-webkit-appearance: none;
 	margin-top: -0.75em;
 }
@@ -1842,7 +1842,7 @@ var beepbox = (function (exports) {
 .beepboxEditor input[type=range]::-moz-range-track {
 	width: 100%;
 	height: 0.5em;
-	cursor: pointer;
+	cursor: url('WOAH.png'), auto;
 	background: ${ColorConfig.uiWidgetBackground};
 }
 .beepboxEditor input[type=range]:focus::-moz-range-track {
@@ -1854,12 +1854,12 @@ var beepbox = (function (exports) {
 	border-radius: 0.25em;
 	border: none;
 	background: currentColor;
-	cursor: pointer;
+	cursor: url('WOAH.png'), auto;
 }
 .beepboxEditor input[type=range]::-ms-track {
 	width: 100%;
 	height: 0.5em;
-	cursor: pointer;
+	cursor: url('WOAH.png'), auto;
 	background: ${ColorConfig.uiWidgetBackground};
 	border-color: transparent;
 }
@@ -1871,7 +1871,7 @@ var beepbox = (function (exports) {
 	width: 0.5em;
 	border-radius: 0.25em;
 	background: currentColor;
-	cursor: pointer;
+	cursor: url('WOAH.png'), auto;
 }
 .beepboxEditor .hintButton {
 	border: 1px solid currentColor;
@@ -1882,7 +1882,7 @@ var beepbox = (function (exports) {
 	text-align: center;
 	margin-left: auto;
 	margin-right: .4em;
-	cursor: pointer;
+	cursor: url('WOAH.png'), auto;
 }
 
 /* wide screen */
@@ -10769,7 +10769,7 @@ var beepbox = (function (exports) {
             this._fifths = SVG.svg({ "pointer-events": "none" });
             this._curve = SVG.path({ fill: "none", stroke: "currentColor", "stroke-width": 2, "pointer-events": "none" });
             this._arrow = SVG.path({ fill: "currentColor", "pointer-events": "none" });
-            this._svg = SVG.svg({ style: `background-color: ${ColorConfig.editorBackground}; touch-action: none; cursor: crosshair;`, width: "100%", height: "100%", viewBox: "0 0 " + this._editorWidth + " " + this._editorHeight, preserveAspectRatio: "none" }, this._fill, this._octaves, this._fifths, this._curve, this._arrow);
+            this._svg = SVG.svg({ style: `background-color: ${ColorConfig.editorBackground}; touch-action: none; cursor: url('WOAH.png'), auto;`, width: "100%", height: "100%", viewBox: "0 0 " + this._editorWidth + " " + this._editorHeight, preserveAspectRatio: "none" }, this._fill, this._octaves, this._fifths, this._curve, this._arrow);
             this.container = HTML.div({ class: "spectrum", style: "height: 2em;" }, this._svg);
             this._mouseX = 0;
             this._mouseY = 0;
@@ -10932,7 +10932,7 @@ var beepbox = (function (exports) {
             this._curve = SVG.path({ fill: "none", stroke: "currentColor", "stroke-width": 2, "pointer-events": "none" });
             this._lastControlPoints = [];
             this._lastControlPointContainer = SVG.svg({ "pointer-events": "none" });
-            this._svg = SVG.svg({ style: `background-color: ${ColorConfig.editorBackground}; touch-action: none; cursor: crosshair;`, width: "100%", height: "100%", viewBox: "0 0 " + this._editorWidth + " " + this._editorHeight, preserveAspectRatio: "none" }, this._octaves, this._fifths, this._curve, this._lastControlPointContainer);
+            this._svg = SVG.svg({ style: `background-color: ${ColorConfig.editorBackground}; touch-action: none; cursor: url('WOAH.png'), auto;`, width: "100%", height: "100%", viewBox: "0 0 " + this._editorWidth + " " + this._editorHeight, preserveAspectRatio: "none" }, this._octaves, this._fifths, this._curve, this._lastControlPointContainer);
             this.container = HTML.div({ class: "harmonics", style: "height: 2em;" }, this._svg);
             this._mouseX = 0;
             this._mouseY = 0;
