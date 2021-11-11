@@ -96,7 +96,7 @@ var beepbox = (function (exports) {
         { name: "clang", volume: 0.4, basePitch: 69, pitchFilterMult: 1024.0, isSoft: false, samples: null },
         { name: "buzz", volume: 0.3, basePitch: 69, pitchFilterMult: 1024.0, isSoft: false, samples: null },
         { name: "hollow", volume: 1.5, basePitch: 96, pitchFilterMult: 1.0, isSoft: true, samples: null },
-		{ name: "harsh", volume: 0.3, basePitch: 80, pitchFilterMult: 1024.0, isSoft: false, samples: null },
+		{ name: "harsh", volume: 0.3, basePitch: 60, pitchFilterMult: 1024.0, isSoft: false, samples: null },
     ]);
     Config.filterCutoffMaxHz = 8000;
     Config.filterCutoffMinHz = 1;
@@ -246,8 +246,8 @@ var beepbox = (function (exports) {
     Config.noiseChannelCountMax = 3;
     Config.noiseInterval = 6;
     Config.pitchesPerOctave = 12;
-    Config.drumCount = 12;
-    Config.pitchOctaves = 7;
+    Config.drumCount = 30;
+    Config.pitchOctaves = 20;
     Config.windowOctaves = 3;
     Config.scrollableOctaves = Config.pitchOctaves - Config.windowOctaves;
     Config.windowPitchCount = Config.windowOctaves * Config.pitchesPerOctave + 1;
