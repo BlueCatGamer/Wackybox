@@ -146,8 +146,14 @@
 			</h1>
 			<p id="introduction">
 				Wackybox
-				
-				<img src="hotdog.png" alt="hotdog" width="500" height="333" class="center">
+				<img id="Hotdog" src="hotdog.png" width="500" height="333" onclick="myFunction()" />
+				<script>
+				function myFunction(){
+					var image = document.getElementById('Hotdog')
+					image.height = 333 * Math.random(.1,2)
+					image.width = 500 * Math.random(.1,2)
+				}
+				</script>
 			</p>
 			<p>
 				try out todbox right now instantly (now)
