@@ -2097,6 +2097,11 @@ var beepbox = (function (exports) {
                         message = div(h2("nintari slider"), p("nintari slider"));
                     }
                     break;
+				case "luok":
+                    {
+                        message = div(h2("luok slider"), p("luok slider"));
+                    }
+                    break;
                 case "reverb":
                     {
                         message = div(h2("Reverb"), p("Reverb is a kind of echo effect. You can use this slider to control the amount of reverb for instruments that enable it. A little bit helps instruments sound more natural. Adding a lot of reverb can add sense of depth or mystery."));
@@ -3305,6 +3310,7 @@ var beepbox = (function (exports) {
             this.tempo = 150;
             this.reverb = 0;
 			this.nintari = 0;
+			this.luok = 13;
             this.beatsPerBar = 8;
             this.barCount = 16;
             this.patternsPerChannel = 8;
@@ -3348,7 +3354,8 @@ var beepbox = (function (exports) {
             let bits;
             let buffer = [];
             buffer.push(base64IntToCharCode[Song._latestVersion]);
-			buffer.push(120, base64IntToCharCode[this.nintari]);
+			buffer.push(123, base64IntToCharCode[this.luok]);
+			buffer.push(120, base64IntToCharCode[this.nintari])
             buffer.push(110, base64IntToCharCode[this.pitchChannelCount], base64IntToCharCode[this.noiseChannelCount]);
             buffer.push(115, base64IntToCharCode[this.scale]);
             buffer.push(107, base64IntToCharCode[this.key]);
@@ -3695,6 +3702,12 @@ var beepbox = (function (exports) {
                     case 120:
                     {
                          this.nintari = base64CharCodeToInt[compressed.charCodeAt(charIndex++)];
+                         //this.reverb = clamp(0, Config.reverbRange, this.reverb);
+                    }
+                        break;
+					case 123:
+                    {
+                         this.luok = base64CharCodeToInt[compressed.charCodeAt(charIndex++)];
                          //this.reverb = clamp(0, Config.reverbRange, this.reverb);
                     }
                         break;
@@ -4401,6 +4414,7 @@ var beepbox = (function (exports) {
                 "beatsPerMinute": this.tempo,
                 "reverb": this.reverb,
 				"nintari": this.nintari,
+				"luok": this.luok,
                 "channels": channelArray,
             };
         }
@@ -4450,6 +4464,9 @@ var beepbox = (function (exports) {
             }
 			if (jsonObject["nintari"] != undefined) {
                 this.nintari = jsonObject["nintari"];
+            }
+			if (jsonObject["luok"] != undefined) {
+                this.luok = jsonObject["luok"];
             }
             if (jsonObject["beatsPerBar"] != undefined) {
                 this.beatsPerBar = Math.max(Config.beatsPerBarMin, Math.min(Config.beatsPerBarMax, jsonObject["beatsPerBar"] | 0));
@@ -8466,6 +8483,15 @@ var beepbox = (function (exports) {
             super();
             doc.notifier.changed();
 			doc.song.nintari = newValue;
+            if (oldValue != newValue)
+                this._didSomething();
+        }
+    }
+	class luokChange extends Change {
+		constructor(doc, oldValue, newValue) {
+            super();
+            doc.notifier.changed();
+			doc.song.luok = newValue;
             if (oldValue != newValue)
                 this._didSomething();
         }
@@ -13538,7 +13564,8 @@ var beepbox = (function (exports) {
                     song.key = key;
                     song.scale = 11;
                     song.reverb = 1;
-					song.nintari = 1;
+					song.nintari = 0;
+					song.luok = 13;
                     song.rhythm = 1;
                     removeDuplicatePatterns(pitchChannels);
                     removeDuplicatePatterns(noiseChannels);
@@ -13815,6 +13842,7 @@ var beepbox = (function (exports) {
 			this._reverbStepper = input$6({ style: "width: 3em; margin-left: 0.4em; vertical-align: middle;", type: "number", step: "1" });
             this._reverbSlider = new Slider(input$6({ style: "margin: 0; width: 4em; flex-grow: 1; vertical-align: middle;", type: "range", min: "0", max: Config.reverbRange - 1, value: "0", step: "1" }), this._doc, (oldValue, newValue) => new ChangeReverb(this._doc, oldValue, newValue));
 			this._theSlider = new Slider(input$6({ style: "margin: 0; width: 4em; flex-grow: 1; vertical-align: middle;", type: "range", min: "0", max: "13", value: "0", step: "1" }), this._doc, (oldValue, newValue) => new TheSliderChange(this._doc, oldValue, newValue));
+			this._luokSlider = new Slider(input$6({ style: "margin: 0; width: 4em; flex-grow: 1; vertical-align: middle;", type: "range", min: "0", max: "13", value: "0", step: "1" }), this._doc, (oldValue, newValue) => new luokChange(this._doc, oldValue, newValue));
             this._rhythmSelect = buildOptions(select$5(), Config.rhythms.map(rhythm => rhythm.name));
             this._pitchedPresetSelect = buildPresetOptions(false);
             this._drumPresetSelect = buildPresetOptions(true);
@@ -13870,7 +13898,7 @@ var beepbox = (function (exports) {
             this._trackAndMuteContainer = div$8({ class: "trackAndMuteContainer" }, this._muteEditor.container, this._trackContainer);
             this._barScrollBar = new BarScrollBar(this._doc, this._trackContainer);
             this._trackArea = div$8({ class: "track-area" }, this._trackAndMuteContainer, this._barScrollBar.container);
-            this._settingsArea = div$8({ class: "settings-area noSelection" }, div$8({ class: "version-area" }, div$8({ style: `text-align: center; margin: 3px 0; color: ${ColorConfig.secondaryText};` }, EditorConfig.versionDisplayName)), div$8({ class: "play-pause-area" }, div$8({ class: "playback-bar-controls" }, this._playButton, this._prevBarButton, this._nextBarButton), div$8({ class: "playback-volume-controls" }, span$3({ class: "volume-speaker" }), this._volumeSlider)), div$8({ class: "menu-area" }, div$8({ class: "selectContainer menu file" }, this._fileMenu), div$8({ class: "selectContainer menu edit" }, this._editMenu), div$8({ class: "selectContainer menu preferences" }, this._optionsMenu)), div$8({ class: "song-settings-area" }, div$8({ class: "editor-controls" }, div$8({ style: `margin: 3px 0; text-align: center; color: ${ColorConfig.secondaryText};` }, "Song Settings"), div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("scale") }, "Scale: "), div$8({ class: "selectContainer" }, this._scaleSelect)), div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("key") }, "Key: "), div$8({ class: "selectContainer" }, this._keySelect)), div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("tempo") }, "Tempo: "), span$3({ style: "display: flex;" }, this._tempoSlider.input, this._tempoStepper)), div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("reverb") }, "Reverb: "), div$8({ class: "selectRow" }, this._reverbSlider.input, this._reverbStepper)), div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("slider") }, "nintari: "), div$8({ class: "selectRow" }, this._theSlider.input)), span$3({ style: "display: flex;" }), div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("rhythm") }, "Rhythm: "), div$8({ class: "selectContainer" }, this._rhythmSelect)))), div$8({ class: "instrument-settings-area" }, this._instrumentSettingsGroup));
+            this._settingsArea = div$8({ class: "settings-area noSelection" }, div$8({ class: "version-area" }, div$8({ style: `text-align: center; margin: 3px 0; color: ${ColorConfig.secondaryText};` }, EditorConfig.versionDisplayName)), div$8({ class: "play-pause-area" }, div$8({ class: "playback-bar-controls" }, this._playButton, this._prevBarButton, this._nextBarButton), div$8({ class: "playback-volume-controls" }, span$3({ class: "volume-speaker" }), this._volumeSlider)), div$8({ class: "menu-area" }, div$8({ class: "selectContainer menu file" }, this._fileMenu), div$8({ class: "selectContainer menu edit" }, this._editMenu), div$8({ class: "selectContainer menu preferences" }, this._optionsMenu)), div$8({ class: "song-settings-area" }, div$8({ class: "editor-controls" }, div$8({ style: `margin: 3px 0; text-align: center; color: ${ColorConfig.secondaryText};` }, "Song Settings"), div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("scale") }, "Scale: "), div$8({ class: "selectContainer" }, this._scaleSelect)), div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("key") }, "Key: "), div$8({ class: "selectContainer" }, this._keySelect)), div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("tempo") }, "Tempo: "), span$3({ style: "display: flex;" }, this._tempoSlider.input, this._tempoStepper)), div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("reverb") }, "Reverb: "), div$8({ class: "selectRow" }, this._reverbSlider.input, this._reverbStepper)), div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("slider") }, "nintari: "), div$8({ class: "selectRow" }, this._theSlider.input)), div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("luok") }, "luok: "), div$8({ class: "selectRow" }, this._luokSlider.input)), span$3({ style: "display: flex;" }), div$8({ class: "selectRow" }, span$3({ class: "tip", onclick: () => this._openPrompt("rhythm") }, "Rhythm: "), div$8({ class: "selectContainer" }, this._rhythmSelect)))), div$8({ class: "instrument-settings-area" }, this._instrumentSettingsGroup));
             this.mainLayer = div$8({ class: "beepboxEditor", tabIndex: "0" }, this._patternArea, this._trackArea, this._settingsArea, this._promptContainer);
             this._wasPlaying = false;
             this._currentPromptName = null;
@@ -13951,6 +13979,7 @@ var beepbox = (function (exports) {
                 this._reverbSlider.updateValue(this._doc.song.reverb);
 				this._reverbStepper.value = this._doc.song.reverb;
 				this._theSlider.updateValue(this._doc.song.nintari);
+				this._luokSlider.updateValue(this._doc.song.luok);
                 setSelectedValue(this._rhythmSelect, this._doc.song.rhythm);
                 if (this._doc.song.getChannelIsNoise(this._doc.channel)) {
                     this._pitchedPresetSelect.style.display = "none";
