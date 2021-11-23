@@ -3348,6 +3348,7 @@ var beepbox = (function (exports) {
             let bits;
             let buffer = [];
             buffer.push(base64IntToCharCode[Song._latestVersion]);
+			buffer.push(120, base64IntToCharCode[this.nintari]);
             buffer.push(110, base64IntToCharCode[this.pitchChannelCount], base64IntToCharCode[this.noiseChannelCount]);
             buffer.push(115, base64IntToCharCode[this.scale]);
             buffer.push(107, base64IntToCharCode[this.key]);
@@ -3691,11 +3692,17 @@ var beepbox = (function (exports) {
                             this.tempo = clamp(Config.tempoMin, Config.tempoMax + 1, this.tempo);
                         }
                         break;
-                    case 109:
-                        {
-                            this.reverb = base64CharCodeToInt[compressed.charCodeAt(charIndex++)];
-                            this.reverb = clamp(0, Config.reverbRange, this.reverb);
-                        }
+                    case 120:
+                    {
+                         this.nintari = base64CharCodeToInt[compressed.charCodeAt(charIndex++)];
+                         //this.reverb = clamp(0, Config.reverbRange, this.reverb);
+                    }
+                        break;
+					case 109:
+                    {
+                        this.reverb = base64CharCodeToInt[compressed.charCodeAt(charIndex++)];
+                        this.reverb = clamp(0, Config.reverbRange, this.reverb);
+                    }
                         break;
                     case 97:
                         {
@@ -4393,6 +4400,7 @@ var beepbox = (function (exports) {
                 "ticksPerBeat": Config.rhythms[this.rhythm].stepsPerBeat,
                 "beatsPerMinute": this.tempo,
                 "reverb": this.reverb,
+				"nintari": this.nintari,
                 "channels": channelArray,
             };
         }
@@ -4439,6 +4447,9 @@ var beepbox = (function (exports) {
             }
             if (jsonObject["reverb"] != undefined) {
                 this.reverb = clamp(0, Config.reverbRange, jsonObject["reverb"] | 0);
+            }
+			if (jsonObject["nintari"] != undefined) {
+                this.nintari = jsonObject["nintari"];
             }
             if (jsonObject["beatsPerBar"] != undefined) {
                 this.beatsPerBar = Math.max(Config.beatsPerBarMin, Math.min(Config.beatsPerBarMax, jsonObject["beatsPerBar"] | 0));
